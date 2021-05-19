@@ -27,22 +27,27 @@
             task: {
                 id: '',
                 title: '',
-                description: ''
+                description: '',
+                finished: '',
+                belong_to: ''
             },
             isable_to_save: false
         }
     },
     methods: {
         isShow (task) {
-            console.log(task)
+            console.log('isShow')
             this.dialog = !this.dialog
             this.task.id = task.id
             this.task.title = task.title
             this.task.description = task.description
+            this.task.belong_to = task.belong_to
         },
         save () {
             this.dialog = !this.dialog
+            console.log('save', this.task)
             this.$emit('save', this.task)
+            
         }
     }
   }

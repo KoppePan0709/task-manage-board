@@ -15,7 +15,7 @@
           <v-col cols="9"><v-card-title class="pt-pb-1">{{ task.title }}</v-card-title></v-col>
           <v-col cols="2" align-self="center"><CardMenu/></v-col>
           </v-layout >
-          <v-col cols="12"><v-card-subtitle class="pa-2 markdown" v-html="description" ></v-card-subtitle></v-col>
+          <v-col cols="12" @click.stop=""><v-card-subtitle class="pa-2 markdown" v-html="description" ></v-card-subtitle></v-col>
         </v-row>
       </v-container>
     </v-card>
@@ -25,7 +25,6 @@
 <script>
 import CardMenu from '@/components/CardMenu'
 import marked from 'marked'
-// const marked = require('marked')
 
 export default ({
   props: {
