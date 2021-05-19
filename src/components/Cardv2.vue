@@ -24,7 +24,7 @@
 
 <script>
 import CardMenu from '@/components/CardMenu'
-import marked from 'marked'
+// import marked from 'marked'
 
 export default ({
   props: {
@@ -32,7 +32,7 @@ export default ({
   },
   components: {
     CardMenu,
-    marked
+    // marked
   },
   methods: {
     updateCheckbox () {
@@ -41,8 +41,8 @@ export default ({
   },
   computed: {
     description: function() {
-      return marked(this.task.description)
-
+      // return marked(this.task.description)
+      return 'description'
     }
   }
 })
