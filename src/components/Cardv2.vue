@@ -41,7 +41,6 @@ export default ({
   },
   computed: {
     description: function() {
-      
       // return marked(this.task.description)
       return 'description'
     }
