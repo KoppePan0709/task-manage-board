@@ -24,7 +24,8 @@
 
 <script>
 import CardMenu from '@/components/CardMenu'
-// import marked from 'marked'
+import marked from 'marked'
+// const marked = require('marked')
 
 export default ({
   props: {
@@ -41,9 +42,9 @@ export default ({
   },
   computed: {
     description: function() {
-      
-      // return marked(this.task.description)
-      return 'description'
+
+      return marked(this.task.description)
+      // return 'description'
     }
   }
 })

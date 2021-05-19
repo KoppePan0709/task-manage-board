@@ -80,26 +80,6 @@ import draggable from 'vuedraggable'
 export default {
     data () {
       return {
-        // tasks: {
-        //   task_1: {
-        //     id: 'task_1',
-        //     title: 'Task Name 1',
-        //     description: 'Descritiipn',
-        //     finished: false
-        //   },
-        //   task_2: {
-        //     id: 'task_2',
-        //     title: 'Task Name 2',
-        //     description: 'Descritiipn',
-        //     finished: false
-        //   },
-        //   task_3: {
-        //     id: 'task_3',
-        //     title: 'Task Name 3',
-        //     description: 'Descritiipn',
-        //     finished: true
-        //   },
-        // },
         taskGroups: [
           {
             group_id: 'A',
