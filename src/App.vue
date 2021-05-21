@@ -49,6 +49,7 @@ import Cardv2 from '@/components/Cardv2'
 import Dialog from '@/components/Dialog'
 import draggable from 'vuedraggable'
 
+
 export default {
     data () {
       return {
@@ -85,17 +86,9 @@ export default {
           {
             id: 'task_1',
             title: 'Task Name YYY',
-            description: '### You can user mrkdwn here like ...\
-            \n\n \
-            \n```bash\
-            \n ここはコードブロック\
-            \n ここはコードブロック\
-            \n ここはコードブロック\
-            \n ここはコードブロック\
-            \n ここはコードブロック\
-            \n\
-            \n```\
-            \n',
+            description: '```This is code block\
+            \nis this still codeblock?\
+            \nIts still codeblock```',
             finished: false,
             belong_to: 'backlog'
           },
@@ -109,7 +102,7 @@ export default {
           todo: [{
             id: 'task_1',
             title: 'Task Name XXX',
-            description: 'Descritiipn',
+            description: '`this is code line`',
             finished: false,
             belong_to: 'todo'
           },

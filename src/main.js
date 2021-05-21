@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
+import VueClipboard from 'vue-clipboard2'
+import VueHighlightJS from 'vue-highlightjs'
+ 
+Vue.use(VueClipboard)
+Vue.use(VueHighlightJS)
 
 Vue.config.productionTip = false
 
