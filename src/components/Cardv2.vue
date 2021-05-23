@@ -1,19 +1,19 @@
 <template>
   <v-col  cols="12">
-    <v-card color="#385F73" width="400" dark>
+    <v-card color="#385F73" width="350" dark class="overflow-hidden">
       <v-container class="pt-0">
         <v-row no-gutters>
           <v-layout wrap>
-          <v-col cols="1" >
+          <!-- <v-col cols="1" >
             <v-checkbox
               :input-value="task.finished"
               @click.stop
               @change="updateCheckbox"
               class="pt-pb-1"
             ></v-checkbox>
-          </v-col>
-          <v-col cols="9"><v-card-title class="pt-pb-1 text-subtitle-1">{{ task.title }}</v-card-title></v-col>
-          <v-col cols="2" align-self="center"><CardMenu/></v-col>
+          </v-col> -->
+          <v-col cols="12"><v-card-title class="pa-0 text-h6 font-weight-bold">{{ task.title }}</v-card-title></v-col>
+          <!-- <v-col cols="2" align-self="center"><CardMenu/></v-col> -->
           </v-layout >
           <v-col cols="12" @click.stop="" align-self="center" >
               <div v-html="description"></div>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import CardMenu from '@/components/CardMenu'
+// import CardMenu from '@/components/CardMenu'
 import CardDescription from '@/components/CardDescription'
 import Vue from 'vue'
 import marked from 'marked'
@@ -40,7 +40,7 @@ export default ({
     }
   },
   components: {
-    CardMenu,
+    // CardMenu,
   },
   methods: {
     updateCheckbox () {

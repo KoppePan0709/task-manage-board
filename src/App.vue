@@ -18,8 +18,8 @@
     <v-main>
       <v-container fluid>
         <v-row dense justify="center" >
-          <v-col cols='4' v-for='group in groups' :key='group.id'>
-            <v-card width="500">
+          <v-col cols='3' v-for='group in groups' :key='group.id'>
+            <v-card width="400">
               <v-card-title class="text-h6">{{ group.name }}</v-card-title>
               <v-row justify="center">
                 <draggable v-model="tasks[group.name]" group="tasks" @start="drag=true" @end="drag=false">
@@ -58,7 +58,11 @@ export default {
             name: 'todo',
           },
           {
-            group_id: 'A',
+            group_id: 'C',
+            name: 'doing',
+          },
+          {
+            group_id: 'D',
             name: 'done',
           }
         ],
@@ -68,14 +72,14 @@ export default {
               id: 'task_1',
               title: 'Commands',
               description: '\
-              \n ### Pod\
+              \n ##### Pod\
               \n\n`kubectl get pods`\
               \n`kubectl get pod < pod name >`\
               \n`kubectl get pod < pod name > -o wide`\
               \n`kubectl get pod < pod name > -o yaml`\
               \n`kubectl description pod < pod name >`\
               \n`kubectl delete pods < pod name >`\
-              \n\n ### Deployment\
+              \n\n ##### Deployment\
               \n\n`kubectl get pods`\
               \n`kubectl get pod < pod name >`\
               \n`kubectl get pod < pod name > -o wide`\
@@ -106,16 +110,51 @@ export default {
               id: 'task_4',
               title: '仮想サーバログインコマンド',
               description: '\
+              \n #### VPC\
+              \n - ##### クラウド管理サーバ\
+              \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`\
+              \n - ##### APIDB\
+              \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`',
+              finished: false,
+              group: 'todo'
+            },
+          ],
+          doing: [
+            {
+              id: 'task_3',
+              title: 'ConfigMap実機反映コマンド',
+              description: '\
+              \n #### コマンド\
+              \n - ##### 本番環境\
+              \n\n`oc create configmap oc-app-commpn -f oc-app-common-prod-1.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap oc-app-commpn -f oc-app-common-prod-2.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n - ##### ステージング環境\
+              \n\n`oc create configmap oc-app-commpn -f oc-app-common-stg-1.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap oc-app-commpn -f oc-app-common-stg-2.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n - ##### 検証環境\
+              \n\n`oc create configmap oc-app-commpn -f oc-app-common-test-1.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap oc-app-commpn -f oc-app-common-test-2.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap oc-app-commpn -f oc-app-common-test-3.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap oc-app-commpn -f oc-app-common-test-4.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap oc-app-commpn -f oc-app-common-test-5.env --dry-run -o yaml | oc create comfigmap -f - `',
+              finished: false,
+              group: 'doing'
+            }
+          ],
+          done: [
+            {
+              id: 'task_5',
+              title: '仮想サーバログインコマンド',
+              description: '\
               \n ### VPC\
               \n - クラウド管理サーバ\
               \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`\
               \n - APIDB\
               \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`',
               finished: false,
-              group: 'todo'
-            },
+              group: 'done'
+            }
           ],
-          done: [],
         }  
       }
     },
