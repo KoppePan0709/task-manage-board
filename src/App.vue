@@ -1,9 +1,4 @@
 <template>
-  <!-- <v-app id="inspire">
-    <v-main>
-      <Drawer/>
-    </v-main>
-  </v-app> -->
   <v-app id="inspire">
     <v-app-bar
       app
@@ -64,137 +59,75 @@ export default {
           },
           {
             group_id: 'A',
-            name: 'doing',
-          },
-          {
-            group_id: 'A',
             name: 'done',
           }
         ],
         tasks: {
           Kubernetes: [
-          {
-            id: 'task_1',
-            title: 'Commands',
-            description: '\
-            \n ### Pod\
-            \n\n`kubectl get pods`\
-            \n`kubectl get pod < pod name >`\
-            \n`kubectl get pod < pod name > -o wide`\
-            \n`kubectl get pod < pod name > -o yaml`\
-            \n`kubectl description pod < pod name >`\
-            \n`kubectl delete pods < pod name >`\
-            \n\n ### Deployment\
-            \n\n`kubectl get pods`\
-            \n`kubectl get pod < pod name >`\
-            \n`kubectl get pod < pod name > -o wide`\
-            \n`kubectl get pod < pod name > -o yaml`\
-            \n`kubectl description pod < pod name >`\
-            \n`kubectl delete pods < pod name >`\
-            \n',
-            finished: false,
-            group: 'Kubernetes'
-          },
-          {
-            id: 'task_2',
-            title: 'Ansible',
-            description: '\
-            \n ##### Playbook実行\
-            \n\n`ansible-playbook -i inventories site.yaml`\
-            \n##### Playbook実行（デバッグモード）\
-            \n`ansible-playbook -i inventories site.yaml -check`\
-            \n##### Playbook実行（詳細デバッグモード）\
-            \n`ansible-playbook -i inventories site.yaml -vvv`\
-            \n',
-            finished: false,
-            group: 'Kubernetes'
-          },
+            {
+              id: 'task_1',
+              title: 'Commands',
+              description: '\
+              \n ### Pod\
+              \n\n`kubectl get pods`\
+              \n`kubectl get pod < pod name >`\
+              \n`kubectl get pod < pod name > -o wide`\
+              \n`kubectl get pod < pod name > -o yaml`\
+              \n`kubectl description pod < pod name >`\
+              \n`kubectl delete pods < pod name >`\
+              \n\n ### Deployment\
+              \n\n`kubectl get pods`\
+              \n`kubectl get pod < pod name >`\
+              \n`kubectl get pod < pod name > -o wide`\
+              \n`kubectl get pod < pod name > -o yaml`\
+              \n`kubectl description pod < pod name >`\
+              \n`kubectl delete pods < pod name >`\
+              \n',
+              finished: false,
+              group: 'Kubernetes'
+            },
+            {
+              id: 'task_2',
+              title: 'Ansible',
+              description: '\
+              \n ##### Playbook実行\
+              \n\n`ansible-playbook -i inventories site.yaml`\
+              \n##### Playbook実行（デバッグモード）\
+              \n`ansible-playbook -i inventories site.yaml -check`\
+              \n##### Playbook実行（詳細デバッグモード）\
+              \n`ansible-playbook -i inventories site.yaml -vvv`\
+              \n',
+              finished: false,
+              group: 'Kubernetes'
+            },
           ],
-          todo: [{
-            id: 'task_4',
-            title: '仮想サーバログインコマンド',
-            description: '\
-            \n ### VPC\
-            \n - クラウド管理サーバ\
-            \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`\
-            \n - APIDB\
-            \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`',
-            finished: false,
-            group: 'todo'
-          },
-          // {
-          //   id: 'task_5',
-          //   title: 'Task Name YYY',
-          //   description: 'Descritiipn',
-          //   finished: false,
-          //   group: 'todo'
-          // },
-          // {
-          //   id: 'task_6',
-          //   title: 'Task Name ZZZ',
-          //   description: 'Descritiipn',
-          //   finished: false,
-          //   group: 'todo'
-          // }],
-          // doing: [{
-          //   id: 'task_7',
-          //   title: 'Task Name XXX',
-          //   description: 'Descritiipn',
-          //   finished: false,
-          //   group: 'doing'
-          // },
-          // {
-          //   id: 'task_8',
-          //   title: 'Task Name YYY',
-          //   description: 'Descritiipn',
-          //   finished: false,
-          //   group: 'doing'
-          // },
-          // {
-          //   id: 'task_9',
-          //   title: 'Task Name ZZZ',
-          //   description: 'Descritiipn',
-          //   finished: false,
-          //   group: 'doing'}
+          todo: [
+            {
+              id: 'task_4',
+              title: '仮想サーバログインコマンド',
+              description: '\
+              \n ### VPC\
+              \n - クラウド管理サーバ\
+              \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`\
+              \n - APIDB\
+              \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`',
+              finished: false,
+              group: 'todo'
+            },
           ],
-          done: [
-          //   {
-          //   id: 'task_10',
-          //   title: 'Task Name XXX',
-          //   description: 'Descritiipn',
-          //   finished: false,
-          //   group: 'done'
-          // },
-          // {
-          //   id: 'task_11',
-          //   title: 'Task Name YYY',
-          //   description: 'Descritiipn',
-          //   finished: false,
-          //   group: 'done'
-          // },
-          // {
-          //   id: 'task_12',
-          //   title: 'Task Name ZZZ',
-          //   description: 'Descritiipn',
-          //   finished: false,
-          //   group: 'done'
-          // }
-          ],
+          done: [],
         }  
       }
     },
     methods: {
     openDialog (task) {
-      console.log('OPEN')
-      console.log(this.$refs.isShow.$emit('isShow'))
       this.$refs.isShow.isShow(task)
     },
     save (task) {
-      console.log('bofore', this.tasks[task.group])
+      console.log('bofore', this.tasks[task.group][0])
       this.tasks[task.group][0].title = task.title
       this.tasks[task.group][0].description = task.description
-      console.log('after', this.tasks[task.group])
-      console.log('SAVE REACH')
+      console.log('after', this.tasks[task.group][0])
     },
     updateCheckbox (task) {
       console.log(task)

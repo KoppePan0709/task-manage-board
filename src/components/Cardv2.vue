@@ -16,14 +16,6 @@
           <v-col cols="2" align-self="center"><CardMenu/></v-col>
           </v-layout >
           <v-col cols="12" @click.stop="" align-self="center" >
-          <!-- <v-col ref="description" cols="12" @click.stop="" align-self="center" > -->
-            <!-- <v-card-text
-              class="pa-2 markdown"
-              ref="description"
-              v-html="description"
-              v-clipboard:copy="description"
-              v-clipboard:success="onCopy"
-              v-clipboard:error="onError"></v-card-text> -->
               <div v-html="description"></div>
           </v-col>
         </v-row>
@@ -49,7 +41,6 @@ export default ({
   },
   components: {
     CardMenu,
-    // CardDescription
   },
   methods: {
     updateCheckbox () {
@@ -62,12 +53,6 @@ export default ({
       alert('Failed to copy texts')
     }
   },
-  // computed: {
-  //   description: function() {
-  //     return marked(this.task.description)
-  //   }
-  // },
-  
   // mounted () {
   //   let clazz = Vue.extend(CardDescription)
   //   let string_org = marked(this.task.description)
@@ -137,7 +122,6 @@ export default ({
               code: div_code
             }
           }).$mount()
-          // this.$refs.description.appendChild(instance.$el)
           div.appendChild(instance.$el)
           }
         }
@@ -145,6 +129,4 @@ export default ({
       }
   }  
 })
-
-
 </script>
