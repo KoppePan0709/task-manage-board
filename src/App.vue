@@ -21,12 +21,12 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
-        <v-row>
-          <v-col cols='4' v-for='group in taskGroups' :key='group.id'>
-            <v-card>
-              <v-card-title>{{ group.name }}</v-card-title>
-              <v-row>
+      <v-container fluid>
+        <v-row dense justify="center" >
+          <v-col cols='4' v-for='group in groups' :key='group.id'>
+            <v-card width="500">
+              <v-card-title class="text-h6">{{ group.name }}</v-card-title>
+              <v-row justify="center">
                 <draggable v-model="tasks[group.name]" group="tasks" @start="drag=true" @end="drag=false">
                   <v-col cols='12' v-for="task in tasks[group.name]" :key="task.id">
                     <Cardv2 :task="task"
@@ -53,7 +53,7 @@ import draggable from 'vuedraggable'
 export default {
     data () {
       return {
-        taskGroups: [
+        groups: [
           {
             group_id: 'A',
             name: 'backlog',
@@ -72,96 +72,109 @@ export default {
           }
         ],
         tasks: {
-          backlog: [{
+          backlog: [
+          {
             id: 'task_1',
-            title: 'Title, Descriptionを変更する機能を追加する',
+            title: 'Task Name XXX',
             description: '\
-            \n ### 課題\
-            \n - Dictionary型でDraggableをできる方法が必要\
-            \n - データ構造を検討\
-            \n  - 各タスクをidで識別する必要がありそう',
+            \n ### Kubernetes Commands\
+            \n - Pod\
+            \n\n`kubectl get pods 1`\n\
+            \n`kubectl get pods 2`\n\
+            \n`kubectl get pods 3`\n\
+            \n`kubectl get pods 4`\n\
+            \n`kubectl get pods 5`\n\
+            \n`kubectl get pods 6`\n',
             finished: false,
-            belong_to: 'backlog'
+            group: 'backlog'
           },
-          {
-            id: 'task_1',
-            title: 'Task Name YYY',
-            description: '```This is code block\
-            \nis this still codeblock?\
-            \nIts still codeblock```',
-            finished: false,
-            belong_to: 'backlog'
-          },
-          {
-            id: 'task_1',
-            title: 'Task Name ZZZ',
-            description: 'Descritiipn',
-            finished: false,
-            belong_to: 'backlog'
-          }],
+          // {
+          //   id: 'task_2',
+          //   title: 'Task Name YYY',
+          //   description: '```This is code block\
+          //   \nis this still codeblock?\
+          //   \nIts still codeblock```',
+          //   finished: false,
+          //   group: 'backlog'
+          // },
+          // {
+          //   id: 'task_3',
+          //   title: 'Task Name ZZZ',
+          //   description: 'Descritiipn',
+          //   finished: false,
+          //   group: 'backlog'
+          // }
+          ],
           todo: [{
-            id: 'task_1',
-            title: 'Task Name XXX',
-            description: '`this is code line`',
+            id: 'task_4',
+            title: '仮想サーバログインコマンド',
+            description: '\
+            \n ### VPC\
+            \n - クラウド管理サーバ\
+            \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`\
+            \n - APIDB\
+            \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`',
             finished: false,
-            belong_to: 'todo'
+            group: 'todo'
           },
-          {
-            id: 'task_1',
-            title: 'Task Name YYY',
-            description: 'Descritiipn',
-            finished: false,
-            belong_to: 'todo'
-          },
-          {
-            id: 'task_1',
-            title: 'Task Name ZZZ',
-            description: 'Descritiipn',
-            finished: false,
-            belong_to: 'todo'
-          }],
-          doing: [{
-            id: 'task_1',
-            title: 'Task Name XXX',
-            description: 'Descritiipn',
-            finished: false,
-            belong_to: 'doing'
-          },
-          {
-            id: 'task_1',
-            title: 'Task Name YYY',
-            description: 'Descritiipn',
-            finished: false,
-            belong_to: 'doing'
-          },
-          {
-            id: 'task_1',
-            title: 'Task Name ZZZ',
-            description: 'Descritiipn',
-            finished: false,
-            belong_to: 'doing'
-          }],
-          done: [{
-            id: 'task_1',
-            title: 'Task Name XXX',
-            description: 'Descritiipn',
-            finished: false,
-            belong_to: 'done'
-          },
-          {
-            id: 'task_1',
-            title: 'Task Name YYY',
-            description: 'Descritiipn',
-            finished: false,
-            belong_to: 'done'
-          },
-          {
-            id: 'task_1',
-            title: 'Task Name ZZZ',
-            description: 'Descritiipn',
-            finished: false,
-            belong_to: 'done'
-          }],
+          // {
+          //   id: 'task_5',
+          //   title: 'Task Name YYY',
+          //   description: 'Descritiipn',
+          //   finished: false,
+          //   group: 'todo'
+          // },
+          // {
+          //   id: 'task_6',
+          //   title: 'Task Name ZZZ',
+          //   description: 'Descritiipn',
+          //   finished: false,
+          //   group: 'todo'
+          // }],
+          // doing: [{
+          //   id: 'task_7',
+          //   title: 'Task Name XXX',
+          //   description: 'Descritiipn',
+          //   finished: false,
+          //   group: 'doing'
+          // },
+          // {
+          //   id: 'task_8',
+          //   title: 'Task Name YYY',
+          //   description: 'Descritiipn',
+          //   finished: false,
+          //   group: 'doing'
+          // },
+          // {
+          //   id: 'task_9',
+          //   title: 'Task Name ZZZ',
+          //   description: 'Descritiipn',
+          //   finished: false,
+          //   group: 'doing'}
+          ],
+          done: [
+          //   {
+          //   id: 'task_10',
+          //   title: 'Task Name XXX',
+          //   description: 'Descritiipn',
+          //   finished: false,
+          //   group: 'done'
+          // },
+          // {
+          //   id: 'task_11',
+          //   title: 'Task Name YYY',
+          //   description: 'Descritiipn',
+          //   finished: false,
+          //   group: 'done'
+          // },
+          // {
+          //   id: 'task_12',
+          //   title: 'Task Name ZZZ',
+          //   description: 'Descritiipn',
+          //   finished: false,
+          //   group: 'done'
+          // }
+          ],
         }  
       }
     },
@@ -172,15 +185,15 @@ export default {
       this.$refs.isShow.isShow(task)
     },
     save (task) {
-      console.log('bofore', this.tasks[task.belong_to])
-      this.tasks[task.belong_to].title = task.title
-      this.tasks[task.belong_to].description = task.description
-      console.log('after', this.tasks[task.belong_to].description)
+      console.log('bofore', this.tasks[task.group])
+      this.tasks[task.group][0].title = task.title
+      this.tasks[task.group][0].description = task.description
+      console.log('after', this.tasks[task.group])
       console.log('SAVE REACH')
     },
     updateCheckbox (task) {
       console.log(task)
-      this.tasks[task.belong_to].finished = !task.finished
+      this.tasks[task.group].finished = !task.finished
       console.log(this.tasks[task.id])
     }
   },

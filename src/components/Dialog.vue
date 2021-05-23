@@ -29,7 +29,7 @@
                 title: '',
                 description: '',
                 finished: '',
-                belong_to: ''
+                group: ''
             },
             isable_to_save: false
         }
@@ -41,11 +41,10 @@
             this.task.id = task.id
             this.task.title = task.title
             this.task.description = task.description
-            this.task.belong_to = task.belong_to
+            this.task.group = task.group
         },
         save () {
             this.dialog = !this.dialog
-            console.log('save', this.task)
             this.$emit('save', this.task)
             
         }
