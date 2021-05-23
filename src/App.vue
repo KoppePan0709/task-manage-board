@@ -93,7 +93,7 @@ export default {
             \n`kubectl delete pods < pod name >`\
             \n',
             finished: false,
-            group: 'backlog'
+            group: 'Kubernetes'
           },
           {
             id: 'task_2',
@@ -107,7 +107,7 @@ export default {
             \n`ansible-playbook -i inventories site.yaml -vvv`\
             \n',
             finished: false,
-            group: 'backlog'
+            group: 'Kubernetes'
           },
           ],
           todo: [{
