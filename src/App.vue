@@ -56,7 +56,7 @@ export default {
         groups: [
           {
             group_id: 'A',
-            name: 'backlog',
+            name: 'Kubernetes',
           },
           {
             group_id: 'B',
@@ -72,38 +72,43 @@ export default {
           }
         ],
         tasks: {
-          backlog: [
+          Kubernetes: [
           {
             id: 'task_1',
-            title: 'Task Name XXX',
+            title: 'Commands',
             description: '\
-            \n ### Kubernetes Commands\
-            \n - Pod\
-            \n\n`kubectl get pods 1`\n\
-            \n`kubectl get pods 2`\n\
-            \n`kubectl get pods 3`\n\
-            \n`kubectl get pods 4`\n\
-            \n`kubectl get pods 5`\n\
-            \n`kubectl get pods 6`\n',
+            \n ### Pod\
+            \n\n`kubectl get pods`\
+            \n`kubectl get pod < pod name >`\
+            \n`kubectl get pod < pod name > -o wide`\
+            \n`kubectl get pod < pod name > -o yaml`\
+            \n`kubectl description pod < pod name >`\
+            \n`kubectl delete pods < pod name >`\
+            \n\n ### Deployment\
+            \n\n`kubectl get pods`\
+            \n`kubectl get pod < pod name >`\
+            \n`kubectl get pod < pod name > -o wide`\
+            \n`kubectl get pod < pod name > -o yaml`\
+            \n`kubectl description pod < pod name >`\
+            \n`kubectl delete pods < pod name >`\
+            \n',
             finished: false,
             group: 'backlog'
           },
-          // {
-          //   id: 'task_2',
-          //   title: 'Task Name YYY',
-          //   description: '```This is code block\
-          //   \nis this still codeblock?\
-          //   \nIts still codeblock```',
-          //   finished: false,
-          //   group: 'backlog'
-          // },
-          // {
-          //   id: 'task_3',
-          //   title: 'Task Name ZZZ',
-          //   description: 'Descritiipn',
-          //   finished: false,
-          //   group: 'backlog'
-          // }
+          {
+            id: 'task_2',
+            title: 'Ansible',
+            description: '\
+            \n ##### Playbook実行\
+            \n\n`ansible-playbook -i inventories site.yaml`\
+            \n##### Playbook実行（デバッグモード）\
+            \n`ansible-playbook -i inventories site.yaml -check`\
+            \n##### Playbook実行（詳細デバッグモード）\
+            \n`ansible-playbook -i inventories site.yaml -vvv`\
+            \n',
+            finished: false,
+            group: 'backlog'
+          },
           ],
           todo: [{
             id: 'task_4',
