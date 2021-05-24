@@ -17,7 +17,7 @@
 
     <v-main>
       <v-container fluid>
-        <v-row dense justify="center" >
+        <v-row dense  >
           <v-col cols='3' v-for='group in groups' :key='group.id'>
             <v-card width="400">
               <v-card-title class="text-h6">{{ group.name }}</v-card-title>
@@ -64,6 +64,14 @@ export default {
           {
             group_id: 'D',
             name: 'done',
+          },
+          {
+            group_id: 'E',
+            name: 'issue',
+          },
+          {
+            group_id: 'F',
+            name: 'solved',
           }
         ],
         tasks: {
@@ -153,6 +161,34 @@ export default {
               \n\n`ssh -i ~/.ssh/id_rsa hostname01`',
               finished: false,
               group: 'done'
+            }
+          ],
+          issue: [
+            {
+              id: 'task_7',
+              title: '仮想サーバログインコマンド',
+              description: '\
+              \n ### VPC\
+              \n - クラウド管理サーバ\
+              \n\n`ssh -i ~/.ssh/id_rsa hostname01`\
+              \n - APIDB\
+              \n\n`ssh -i ~/.ssh/id_rsa hostname01`',
+              finished: false,
+              group: 'issue'
+            }
+          ],
+          solved: [
+            {
+              id: 'task_8',
+              title: '仮想サーバログインコマンド',
+              description: '\
+              \n ### VPC\
+              \n - クラウド管理サーバ\
+              \n\n`ssh -i ~/.ssh/id_rsa hostname01`\
+              \n - APIDB\
+              \n\n`ssh -i ~/.ssh/id_rsa hostname01`',
+              finished: false,
+              group: 'solved'
             }
           ],
         }  
