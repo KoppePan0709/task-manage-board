@@ -112,9 +112,9 @@ export default {
               description: '\
               \n #### VPC\
               \n - ##### クラウド管理サーバ\
-              \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`\
+              \n\n`ssh -i ~/.ssh/id_rsa hostname01`\
               \n - ##### APIDB\
-              \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`',
+              \n\n`ssh -i ~/.ssh/id_rsa hostname01`',
               finished: false,
               group: 'todo'
             },
@@ -126,17 +126,17 @@ export default {
               description: '\
               \n #### コマンド\
               \n - ##### 本番環境\
-              \n\n`oc create configmap oc-app-commpn -f oc-app-common-prod-1.env --dry-run -o yaml | oc create comfigmap -f - `\
-              \n`oc create configmap oc-app-commpn -f oc-app-common-prod-2.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n\n`oc create configmap < configmap name> -f path/to/file.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap < configmap name> -f path/to/file.env --dry-run -o yaml | oc create comfigmap -f - `\
               \n - ##### ステージング環境\
-              \n\n`oc create configmap oc-app-commpn -f oc-app-common-stg-1.env --dry-run -o yaml | oc create comfigmap -f - `\
-              \n`oc create configmap oc-app-commpn -f oc-app-common-stg-2.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n\n`oc create configmap < configmap name> -f path/to/file.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap < configmap name> -f path/to/file.env --dry-run -o yaml | oc create comfigmap -f - `\
               \n - ##### 検証環境\
-              \n\n`oc create configmap oc-app-commpn -f oc-app-common-test-1.env --dry-run -o yaml | oc create comfigmap -f - `\
-              \n`oc create configmap oc-app-commpn -f oc-app-common-test-2.env --dry-run -o yaml | oc create comfigmap -f - `\
-              \n`oc create configmap oc-app-commpn -f oc-app-common-test-3.env --dry-run -o yaml | oc create comfigmap -f - `\
-              \n`oc create configmap oc-app-commpn -f oc-app-common-test-4.env --dry-run -o yaml | oc create comfigmap -f - `\
-              \n`oc create configmap oc-app-commpn -f oc-app-common-test-5.env --dry-run -o yaml | oc create comfigmap -f - `',
+              \n\n`oc create configmap < configmap name> -f path/to/file.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap < configmap name> -f path/to/file.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap < configmap name> -f path/to/file.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap < configmap name> -f path/to/file.env --dry-run -o yaml | oc create comfigmap -f - `\
+              \n`oc create configmap < configmap name> -f path/to/file.env --dry-run -o yaml | oc create comfigmap -f - `',
               finished: false,
               group: 'doing'
             }
@@ -148,9 +148,9 @@ export default {
               description: '\
               \n ### VPC\
               \n - クラウド管理サーバ\
-              \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`\
+              \n\n`ssh -i ~/.ssh/id_rsa hostname01`\
               \n - APIDB\
-              \n\n`ssh -i ~/.ssh/id_rsa dkthiqcm11`',
+              \n\n`ssh -i ~/.ssh/id_rsa hostname01`',
               finished: false,
               group: 'done'
             }
