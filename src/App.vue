@@ -19,10 +19,13 @@
       <v-container fluid>
         <v-row dense  >
           <v-col cols='3' v-for='group in groups' :key='group.id'>
-            <v-card width="400">
-              <v-card-title class="text-h6">{{ group.name }}</v-card-title>
-              <v-row justify="center">
-                <draggable v-model="tasks[group.name]" group="tasks" @start="drag=true" @end="drag=false">
+            <v-card width="400" >
+              <v-row justify="space-between">
+                <v-col cols='10' align-self="center" class="pl-5"><v-card-title class="text-h6" > {{ group.name }} </v-card-title></v-col>
+                <v-col cols='2' align-self="center" class="pa-1"><v-btn color="#385F73" fab small dark v-on:click.native="openDialog(group.name)"><v-icon dark>mdi-plus</v-icon></v-btn></v-col>
+              </v-row>
+              <v-row justify="center" >
+                <draggable v-model="tasks[group.name]" group="tasks" @start="drag=true" @end="drag=false" >
                   <v-col cols='12' v-for="task in tasks[group.name]" :key="task.id">
                     <Cardv2 :task="task"
                     v-on:click.native="openDialog(task)"
@@ -50,28 +53,34 @@ export default {
       return {
         groups: [
           {
-            group_id: 'A',
+            id: '0',
             name: 'Kubernetes',
+            isEditing: false 
           },
           {
-            group_id: 'B',
+            id: '1',
             name: 'todo',
+            isEditing: false
           },
           {
-            group_id: 'C',
+            id: '2',
             name: 'doing',
+            isEditing: false
           },
           {
-            group_id: 'D',
+            id: '3',
             name: 'done',
+            isEditing: false
           },
           {
-            group_id: 'E',
+            id: '4',
             name: 'issue',
+            isEditing: false
           },
           {
-            group_id: 'F',
+            id: '5',
             name: 'solved',
+            isEditing: false
           }
         ],
         tasks: {
@@ -118,7 +127,19 @@ export default {
               id: 'task_4',
               title: '仮想サーバログインコマンド',
               description: '\
-              \n #### VPC\
+              \n #### 本番環境\
+              \n - ##### クラウド管理サーバ\
+              \n\n`ssh -i ~/.ssh/id_rsa hostname01`\
+              \n - ##### APIDB\
+              \n\n`ssh -i ~/.ssh/id_rsa hostname01`',
+              finished: false,
+              group: 'todo'
+            },
+            {
+              id: 'task_5',
+              title: '仮想サーバログインコマンド',
+              description: '\
+              \n #### ステージング\
               \n - ##### クラウド管理サーバ\
               \n\n`ssh -i ~/.ssh/id_rsa hostname01`\
               \n - ##### APIDB\
@@ -187,7 +208,6 @@ export default {
               \n\n`ssh -i ~/.ssh/id_rsa hostname01`\
               \n - APIDB\
               \n\n`ssh -i ~/.ssh/id_rsa hostname01`',
-              finished: false,
               group: 'solved'
             }
           ],
@@ -198,17 +218,29 @@ export default {
     openDialog (task) {
       this.$refs.isShow.isShow(task)
     },
-    save (task) {
-      console.log('bofore', this.tasks[task.group][0])
-      this.tasks[task.group][0].title = task.title
-      this.tasks[task.group][0].description = task.description
-      console.log('after', this.tasks[task.group][0])
+    save (task, isNew) {
+      if(!isNew){
+        this.tasks[task.group][0].title = task.title
+        this.tasks[task.group][0].description = task.description
+      }else{
+        const newCard = {
+        id: 'testid',
+        title: task.title,
+        description: task.description,
+        group: task.group
+        }
+        if(task.title){
+          console.log(task.group)
+          console.log(this.tasks[task.group])
+          this.tasks[task.group].push(newCard)
+        }
+      }
     },
     updateCheckbox (task) {
       console.log(task)
       this.tasks[task.group].finished = !task.finished
       console.log(this.tasks[task.id])
-    }
+    },
   },
     components: {
       Cardv2,

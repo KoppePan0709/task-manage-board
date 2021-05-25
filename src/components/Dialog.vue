@@ -7,7 +7,7 @@
         <v-card class="pa-4" >
             <v-container>
                 <v-row>
-                    <v-col cols="12" align="center"><v-text-field v-model="task.title" label="task title"></v-text-field></v-col>
+                    <v-col cols="12" align="center"><v-text-field v-model="task.title" label="task title" required></v-text-field></v-col>
                     <v-col cols="12" align="center"><v-textarea name="input-7-1" label="Description"  v-model="task.description" rows="20"></v-textarea></v-col>
                     <v-col cols="12" align="center">
                         <v-btn elevation="2" rounded color="#385F73" dark v-on:click="save">Save</v-btn>
@@ -24,6 +24,7 @@
     data () {
         return {
             dialog: false,
+            isNew: false,
             task: {
                 id: '',
                 title: '',
@@ -36,17 +37,25 @@
     },
     methods: {
         isShow (task) {
-            console.log('isShow')
-            this.dialog = !this.dialog
-            this.task.id = task.id
-            this.task.title = task.title
-            this.task.description = task.description
-            this.task.group = task.group
+            if (typeof task == 'object') {
+                this.isNew = false
+                this.dialog = !this.dialog
+                this.task.id = task.id
+                this.task.title = task.title
+                this.task.description = task.description
+                this.task.group = task.group
+            }else{
+                this.isNew = true
+                this.dialog = !this.dialog
+                this.task.id = ''
+                this.task.title = ''
+                this.task.description = ''
+                this.task.group = task
+            }
         },
-        save () {
+        save () {            
             this.dialog = !this.dialog
-            this.$emit('save', this.task)
-            
+            this.$emit('save', this.task, this.isNew)
         }
     }
   }
