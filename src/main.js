@@ -2,30 +2,18 @@ import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import VueClipboard from 'vue-clipboard2'
-import VueHighlightJS from 'vue-highlightjs'
+// import VueHighlightJS from 'vue-highlightjs'
+// import hljs from 'highlightjs'
+import store from './store';
  
 Vue.use(VueClipboard)
-Vue.use(VueHighlightJS)
-
+// Vue.use(VueHighlightJS)
+// Vue.use(hljs);
 Vue.config.productionTip = false
 
-const todos = [
-  {id: 0, title: '夕ご飯の買い物', description: 'じゃがいも　にんじん　たまねぎ'},
-  {id: 1, title: '病院に行く', description: '薬受け取り'},
-  {id: 2, title: '宿題をやる', description: '数学　英語'}
-]
-
-const storage = sessionStorage
-
-for (const todo of todos){
-  storage[todo.id] = JSON.stringify({
-    id: todo.id,
-    title: todo.title,
-    description: todo.description
-  })
-}
 
 new Vue({
   vuetify,
+  store,
   render: h => h(App)
 }).$mount('#app')

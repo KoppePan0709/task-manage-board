@@ -20,43 +20,39 @@
 </template>
 
 <script scoped>
-  export default {
-    data () {
-        return {
-            dialog: false,
-            isNew: false,
-            task: {
-                id: '',
-                title: '',
-                description: '',
-                finished: '',
-                group: ''
-            },
-            isable_to_save: false
-        }
-    },
-    methods: {
-        isShow (task) {
-            if (typeof task == 'object') {
-                this.isNew = false
-                this.dialog = !this.dialog
-                this.task.id = task.id
-                this.task.title = task.title
-                this.task.description = task.description
-                this.task.group = task.group
-            }else{
-                this.isNew = true
-                this.dialog = !this.dialog
-                this.task.id = ''
-                this.task.title = ''
-                this.task.description = ''
-                this.task.group = task
-            }
-        },
-        save () {            
-            this.dialog = !this.dialog
-            this.$emit('save', this.task, this.isNew)
-        }
+// import { mapMutations } from 'vuex'
+
+export default {
+  props: ['task', 'isNew'],
+  data () {
+      return {
+          dialog: false,
+          // taskData: {
+          //   id: this.task.id,
+          //   // titel: this.task.titel,
+          //   titel: 'TEST',
+          //   description: this.task.description,
+          //   finished: this.task.finished,
+          //   group: this.task.group
+          // },
+      }
+  },
+  methods: {
+    isShow () {
+      this.dialog = !this.dialog
+      console.log('isShow', this.task)
+    },  
+    save () {   
+      if (this.isNew != true) {
+        this.dialog = !this.dialog
+        this.$store.commit('updateTask', this.task)
+      }else{
+        this.dialog = !this.dialog
+        this.$store.commit('createTask', this.task)
+      }
+      
+      
     }
   }
+}
 </script>
