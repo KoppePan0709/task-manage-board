@@ -3,6 +3,7 @@
     <v-dialog
       v-model="dialog"
       max-width="600"
+      
     >
         <v-card class="pa-4" >
             <v-container>
@@ -23,7 +24,7 @@
 // import { mapMutations } from 'vuex'
 
 export default {
-  props: ['task', 'isNew'],
+  props: ['task', 'isNew', 'group_name'],
   data () {
       return {
           dialog: false,
@@ -37,13 +38,19 @@ export default {
     save () {   
       if (this.isNew != true) {
         this.dialog = !this.dialog
-        this.$store.commit('updateTasks', this.task)
+        console.log('FIRE')
+        this.$store.dispatch('updateTasks', this.task)
       }else{
         this.dialog = !this.dialog
-        this.$store.dispatch('createTasks', this.task)
+        const task = {
+          id: this.$store.state.tasks[this.group_name].length,
+          user_id: this.$store.state.user_id,
+          group_id: this.group_name,
+          title: this.task.title,
+          description: this.task.description
+        }
+        this.$store.dispatch('createTasks', task)
       }
-      
-      
     }
   }
 }

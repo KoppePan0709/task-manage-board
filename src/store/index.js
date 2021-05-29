@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user_id: 'userId_001',
     groups: [],
     tasks: {}
   },
@@ -22,16 +23,15 @@ export default new Vuex.Store({
       Vue.set(state.tasks[element.group_id], index, element)
       Vue.nextTick
     },
-    updateTasks (state, task) {
-      console.log(task)
-      Vue.set(state.tasks[task.group],task.id, task)
-    },
     createTasks (state,task) {
-      console.log(task)
-      const id = state.tasks[task.group].length
-      task.id = id
-      Vue.set(state.tasks[task.group],id, task)  
-      console.log(state.tasks[task.group][id])
+      console.log('createTask',task)
+      Vue.set(state.tasks[task.group_id],task.id, task)  
+      console.log(state.tasks[task.group_id][task.id])
+    },
+    updateTasks (state,task) {
+      console.log('updateTask',task)
+      Vue.set(state.tasks[task.group_id],task.id, task)  
+      console.log(state.tasks[task.group_id][task.id])
     }
   },
   actions: {
@@ -58,6 +58,12 @@ export default new Vuex.Store({
         console.log(results)
       }).catch(err => console.log(err))
       commit('createTasks', task)
+    },
+    updateTasks ( { commit }, task ){
+      api.updateTasks(task).then(results => {
+        console.log(results)
+      }).catch(err => console.log(err))
+      commit('updateTasks', task)
     }
   }
 });

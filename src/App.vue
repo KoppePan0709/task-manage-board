@@ -16,11 +16,10 @@
     </v-app-bar>
 
     <v-main>
-      <v-container fluid>
-        <v-row dense  >
+      <v-container fluid class="pt-3">
+        <v-row dense>
           <v-col cols='3' v-for='group in groups' :key='group.id'>
-            <div><Dialog ref="isShow" :task="{group: group.name}" :isNew="true"/></div>
-            <v-card width="400" >
+            <v-card width="400" class="ma-2">
               <v-row justify="space-between">
                 <v-col cols='10' align-self="center" class="pl-5"><v-card-title class="text-h6" > {{ group.name }} </v-card-title></v-col>
                 <v-col cols='2' align-self="center" class="pa-1">
@@ -37,6 +36,7 @@
                 </draggable>
               </v-row>
             </v-card>
+            <div><Dialog ref="isShow" :group_name="group.name" :task="{}" :isNew="true"/></div>
           </v-col>
         </v-row>
       </v-container>

@@ -17,7 +17,7 @@ new Vue({
   store,
   render: h => h(App),
   created () {
-    this.$store.dispatch('initGroups', 'userId_001')
-    this.$store.dispatch('initTasks', 'userId_001')
+    this.$store.dispatch('initGroups', this.$store.state.user_id)
+    this.$store.dispatch('initTasks', this.$store.state.user_id)
   },
 }).$mount('#app')

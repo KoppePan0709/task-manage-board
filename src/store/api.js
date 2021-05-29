@@ -1,7 +1,8 @@
 export default {
     getAllTasks,
     getAllGroups,
-    createTasks
+    createTasks,
+    updateTasks
 }
 
 
@@ -31,6 +32,7 @@ export async function getAllGroups(user_id) {
 
 // create task 
 export async function createTasks(task){
+    console.log('API', task)
     const method = 'POST';
     const headers = {
         'Content-Type': 'application/json'
@@ -51,6 +53,7 @@ export async function createTasks(task){
 }
 
 export async function updateTasks(task){
+    console.log('API Fire')
     const method = 'POST';
     const headers = {
         'Content-Type': 'application/json'
@@ -64,7 +67,7 @@ export async function updateTasks(task){
             description: task.description
         }
     )
-    const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/todos/update', {method, headers, body});
+    const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/cards/update', {method, headers, body});
     const data = await res.json();
     console.log(data.results)
     return data.results
