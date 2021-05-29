@@ -51,7 +51,6 @@ import draggable from 'vuedraggable'
 import { mapState } from 'vuex'
 
 
-
 export default {
   data () {
     return {
@@ -64,8 +63,6 @@ export default {
     draggable
   },
   computed: mapState([
-    'count',
-    'posts',
     'groups',
     'tasks'
   ]),
@@ -75,34 +72,6 @@ export default {
       console.log(this.$refs.isShow)
       this.$refs.isShow[id].isShow()
       }
-    // openDialog (task) {
-    //   console.log('openDialog', task)
-    //   this.showDialog = !this.showDialog
-    //   this.$refs.isShow.isShow(task)
-  // },
-    // save (task, isNew) {
-    //   if(!isNew){
-    //     this.tasks[task.group][0].title = task.title
-    //     this.tasks[task.group][0].description = task.description
-    //   }else{
-    //     const newCard = {
-    //     id: 'testid',
-    //     title: task.title,
-    //     description: task.description,
-    //     group: task.group
-    //     }
-    //     if(task.title){
-    //       console.log(task.group)
-    //       console.log(this.tasks[task.group])
-    //       this.tasks[task.group].push(newCard)
-    //     }
-    //   }
-    // },
-    // updateCheckbox (task) {
-    //   console.log(task)
-    //   this.tasks[task.group].finished = !task.finished
-    //   console.log(this.tasks[task.id])
-    // },
   }
 }
 </script>

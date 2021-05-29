@@ -27,14 +27,6 @@ export default {
   data () {
       return {
           dialog: false,
-          // taskData: {
-          //   id: this.task.id,
-          //   // titel: this.task.titel,
-          //   titel: 'TEST',
-          //   description: this.task.description,
-          //   finished: this.task.finished,
-          //   group: this.task.group
-          // },
       }
   },
   methods: {
@@ -45,10 +37,10 @@ export default {
     save () {   
       if (this.isNew != true) {
         this.dialog = !this.dialog
-        this.$store.commit('updateTask', this.task)
+        this.$store.commit('updateTasks', this.task)
       }else{
         this.dialog = !this.dialog
-        this.$store.commit('createTask', this.task)
+        this.$store.dispatch('createTasks', this.task)
       }
       
       

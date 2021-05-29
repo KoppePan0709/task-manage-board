@@ -15,5 +15,9 @@ Vue.config.productionTip = false
 new Vue({
   vuetify,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created () {
+    this.$store.dispatch('initGroups', 'userId_001')
+    this.$store.dispatch('initTasks', 'userId_001')
+  },
 }).$mount('#app')

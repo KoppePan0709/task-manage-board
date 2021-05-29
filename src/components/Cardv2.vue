@@ -9,9 +9,9 @@
           </v-layout >
           <v-col cols="12" ref="description" @click.stop="" align-self="center" v-html="description"></v-col>
           <v-col cols="12"><Dialog ref="isShow" :task="task" :isNew="false"/></v-col>
-          <div class="highlight-json">
+          <!-- <div class="highlight-json">
             <pre v-html="code"></pre>
-          </div>
+          </div> -->
         </v-row>
       </v-container>
     </v-card>
