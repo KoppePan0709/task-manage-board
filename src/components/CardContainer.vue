@@ -1,79 +1,76 @@
 <template>
-  <v-card
-    max-width="400"
-    class="mx-auto"
-  >
-    <v-container>
-      <v-row dense>
-        <v-col  cols="12">
-          <Cardv2 v-for="(task, i) in tasks" :key="i" :task="task"
-            v-on:click.native="openDialog(task)"
-            @updateCheckbox="updateCheckbox"/>
+  <v-card width="400" class="ma-2">
+    <v-row justify="center" >                
+      <template v-if="isEditting">
+        <v-col cols='11' align-self="center">
+          <v-text-field label="Main input" :rules="rules" hide-details="auto" @blur="switchEdit(); changeGroupName(group.name);" v-model="group.name"></v-text-field>
+      </v-col>
+      </template>
+      <template v-else>
+        <v-col cols='11' align-self="center" class="pa-0 pl-5" @click="switchEdit()">
+          <v-card-title class="text-h6 pa-0 pt-2">{{ group.name }}</v-card-title>
         </v-col>
-      </v-row>
-    </v-container>
-    <Dialog ref="isShow" @save="save"/>
-    <CreateTaskButton/>
+      </template>
+    </v-row>
+    
+    <v-row justify="center" >
+        <v-col cols='11' v-for="task in groupTasks(group.name)" :key="task.id">
+          <Cardv2 :task="task"/>
+        </v-col>
+    </v-row>
+
+    <v-row justify="center">
+      <v-col cols="11"><v-btn block color="#d8d8d8" elevation="0" @click="openDialog()">+ new card</v-btn></v-col>
+      <div><Dialog ref="isShow" :group_name="group.name" :task="{}" :isNew="true"/></div>
+    </v-row>
+
   </v-card>
 </template>
 
 <script>
-// import Card from '@/components/Card'
 import Dialog from '@/components/Dialog'
-import CreateTaskButton from '@/components/CreateTaskButton'
 import Cardv2 from './Cardv2.vue'
+import { mapGetters } from 'vuex'
 
 export default {
-  data: () => ({
-    tasks: {
-      task_1: {
-        id: 'task_1',
-        title: 'Task Name 1',
-        description: 'Descritiipn',
-        finished: false
-      },
-      task_2: {
-        id: 'task_2',
-        title: 'Task Name 2',
-        description: 'Descritiipn',
-        finished: false
-      },
-      task_3: {
-        id: 'task_3',
-        title: 'Task Name 3',
-        description: 'Descritiipn',
-        finished: true
-      },
-      task_4: {
-        id: 'task_4',
-        title: 'Task Name 4',
-        description: 'Descritiipn',
-        finished: true
-      }
-    },
-    dialog: true
-  }),
+  props:['group'],
+  data () {
+    return {
+      isEditting: false,
+      rules: [
+        value => !!value || 'Required.',
+        value => (value && value.length >= 3) || 'Min 3 characters',
+      ],
+    }
+  },
   components: {
-    Dialog,
-    CreateTaskButton,
-    Cardv2
+   Cardv2,
+   Dialog
   },
   methods: {
-    openDialog (task) {
-      console.log('OPEN')
-      console.log(this.$refs.isShow.$emit('isShow'))
-      this.$refs.isShow.isShow(task)
+    switchEdit () {
+      console.log('EDIT Fire')
+      this.isEditting = !this.isEditting
+      console.log(this.isEditting)
     },
-    save (task) {
-      this.tasks[task.id].title = task.title
-      this.tasks[task.id].description = task.description
-      console.log('SAVE REACH')
-    },
-    updateCheckbox (task) {
-      console.log(task)
-      this.tasks[task.id].finished = !task.finished
-      console.log(this.tasks[task.id])
+    // changeGroupName (group_name) {
+    //   console.log('change Fire')
+    //   const tasks = this.$store.getters.groupTasks(group_name)
+    //   console.log(this.$store.state.groups)
+    // },
+    // openDialog (id) {
+    //   console.log('Fire')
+    //   console.log(this.$refs.isShow)
+    //   this.$refs.isShow[id].isShow()
+    //   },
+    openDialog () {
+      console.log('Fire')
+      console.log(this.$refs.isShow)
+      this.$refs.isShow.isShow()
     }
-  }
+  },
+  computed: mapGetters([
+    'groupTasks'
+  ])
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
-  <v-col  cols="12">
-    <v-card color="#385F73" width="350" dark class="overflow-hidden">
+  <v-col  cols="12" class="pa-0" >
+    <!-- <v-card color="#385F73" width="350" dark class="overflow-hidden"> -->
+    <v-card color="#4c758a" width="350" dark class="overflow-hidden">
       <v-container class="pt-0">
         <v-row no-gutters>
           <v-layout wrap>
@@ -63,6 +64,7 @@ export default ({
 
     },
     description: function () {
+      console.log('marked', this.task)
       return marked(this.task.description)
   //     let string_org = marked(this.task.description)
   //     const div = document.createElement('div')
