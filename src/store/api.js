@@ -2,7 +2,10 @@ export default {
     getAllTasks,
     getAllGroups,
     createTasks,
-    updateTasks
+    createGroups,
+    updateTasks,
+    updateGroups,
+    deleteTasks
 }
 
 
@@ -52,8 +55,26 @@ export async function createTasks(task){
     return data.results
 }
 
+export async function createGroups(group){
+    console.log('API', group)
+    const method = 'POST';
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const body = JSON.stringify(
+        {
+            id: group.id,
+            user_id: group.user_id,
+            name: group.name,
+        }
+    )
+    const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/groups/create', {method, headers, body});
+    const data = await res.json();
+    console.log(data.results)
+    return data.results
+}
+
 export async function updateTasks(task){
-    console.log('API Fire')
     const method = 'POST';
     const headers = {
         'Content-Type': 'application/json'
@@ -68,6 +89,45 @@ export async function updateTasks(task){
         }
     )
     const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/cards/update', {method, headers, body});
+    const data = await res.json();
+    console.log(data.results)
+    return data.results
+}
+
+export async function updateGroups(group){
+    const method = 'POST';
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const body = JSON.stringify(
+        {
+            id: group.id,
+            user_id: group.user_id,
+            name: group.name,
+        }
+    )
+    const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/groups/update', {method, headers, body});
+    const data = await res.json();
+    console.log(data.results)
+    return data.results
+}
+
+export async function deleteTasks(task){
+    console.log('Delete Task API Fired')
+    const method = 'POST';
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const body = JSON.stringify(
+        {
+            id: task.id,
+            user_id: task.user_id,
+            group_id: task.group_id,
+            title: task.title,
+            description: task.description
+        }
+    )
+    const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/cards/delete', {method, headers, body});
     const data = await res.json();
     console.log(data.results)
     return data.results

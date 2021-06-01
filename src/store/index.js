@@ -11,9 +11,13 @@ export default new Vuex.Store({
     tasks: []
   },
   getters: {
-    groupTasks: (state) => (group_name) =>{
+    tasksByGroupName: (state) => (group_name) =>{
       console.log('getters', state.tasks.filter( task => task.group_id === group_name))
       return state.tasks.filter( task => task.group_id === group_name)
+    },
+    taskById: (state) => (id) =>{
+      console.log('getters: taskById', state.tasks.filter( task => task.id === id))
+      //return state.tasks.filter( task => task.group_id === group_name)
     }
   },
   mutations: {
@@ -29,16 +33,30 @@ export default new Vuex.Store({
       Vue.nextTick
     },
     createTasks (state,task) {
-      console.log('createTask',task)
-      Vue.set(state.tasks,task.id, task)  
+      console.log('createTasks',task)
+      const index = state.tasks.length
+      Vue.set(state.tasks,index, task)  
+    },
+    createGroups (state,group) {
+      const index = state.groups.length
+      Vue.set(state.groups,index, group)
     },
     updateTasks (state,task) {
-      console.log('updateTask',task)
-      Vue.set(state.tasks,task.id, task)
+      console.log('updateTasks', task)
+      const index = state.tasks.findIndex( _task => _task.id === task.id)
+      Vue.set(state.tasks,index, task)
     },
-    // updateGroupName (state, task) {
-    //   Vue.set(state.tasks[task.group_id])
-    // }
+    deleteTasks (state, task) {
+      console.log('deleteTasks Fire')
+      const index = state.tasks.findIndex( _task => _task.id === task.id)
+      console.log(index)
+      Vue.delete(state.tasks, index)
+    },
+    updateGroups (state, group) {
+      console.log('API updateGroups', group)
+      const index = state.groups.findIndex( _group => _group.id === group.id)
+      Vue.set(state.groups,index, group)
+    }
   },
   actions: {
     initGroups ( { commit }, user_id){
@@ -65,11 +83,30 @@ export default new Vuex.Store({
       }).catch(err => console.log(err))
       commit('createTasks', task)
     },
-    updateTasks ( { commit }, task ){
-      api.updateTasks(task).then(results => {
+    createGroups ( { commit }, group ){
+      console.log('createGroups Fire')
+      api.createGroups(group).then(results => {
         console.log(results)
       }).catch(err => console.log(err))
+      commit('createGroups', group)
+    },
+    updateTasks ( { commit }, task ){
+      api.updateTasks(task).then(results => {
+        console.log('API updateTasks succeed', results)
+      }).catch(err => console.log(err))
       commit('updateTasks', task)
+    },
+    updateGroups ( { commit }, group ){
+      api.updateGroups(group).then(results => {
+        console.log(results)
+      }).catch(err => console.log(err))
+      commit('updateGroups', group)
+    },
+    deleteTasks ( {commit }, task){
+      api.deleteTasks(task).then( results => {
+        console.log(results)
+      }).catch( err => console.log(err))
+      commit('deleteTasks', task)
     }
   }
 });

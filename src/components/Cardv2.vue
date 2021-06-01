@@ -5,8 +5,8 @@
       <v-container class="pt-0">
         <v-row no-gutters>
           <v-layout wrap>
-            <v-col cols="12"><v-card-title @click="openDialog" class="pa-0 text-h6 font-weight-bold">{{ task.title }}</v-card-title></v-col>
-            <!-- <v-col cols="2" align-self="center"><CardMenu/></v-col> -->
+            <v-col cols="10"><v-card-title @click="openDialog" class="pa-0 text-h6 font-weight-bold">{{ task.title }}</v-card-title></v-col>
+            <v-col cols="2" align-self="center"><CardMenu :task="task"/></v-col>
           </v-layout >
           <v-col cols="12" ref="description" @click.stop="" align-self="center" v-html="description"></v-col>
           <v-col cols="12"><Dialog ref="isShow" :task="task" :isNew="false"/></v-col>
@@ -20,15 +20,12 @@
 </template>
 
 <script>
-// import CardMenu from '@/components/CardMenu'
+import CardMenu from '@/components/CardMenu'
 // import CardDescription from '@/components/CardDescription'
 import hljs from 'highlight.js';
 import 'highlight.js/styles/xcode.css';
 import Dialog from '@/components/Dialog'
 import marked from 'marked'
-
-
-
 
 export default ({
   props: ['task'],
@@ -38,7 +35,7 @@ export default ({
     }
   },
   components: {
-    // CardMenu,
+    CardMenu,
     Dialog
   },
   methods: {
@@ -64,7 +61,7 @@ export default ({
 
     },
     description: function () {
-      console.log('marked', this.task)
+      console.log('marked', marked(this.task.description))
       return marked(this.task.description)
   //     let string_org = marked(this.task.description)
   //     const div = document.createElement('div')

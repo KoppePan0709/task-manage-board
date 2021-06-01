@@ -7,13 +7,17 @@
     >
         <v-card class="pa-4" >
             <v-container>
-                <v-row>
-                    <v-col cols="12" align="center"><v-text-field v-model="task.title" label="task title" required></v-text-field></v-col>
-                    <v-col cols="12" align="center"><v-textarea name="input-7-1" label="Description"  v-model="task.description" rows="20"></v-textarea></v-col>
-                    <v-col cols="12" align="center">
-                        <v-btn elevation="2" rounded color="#385F73" dark v-on:click="save">Save</v-btn>
-                    </v-col>
-                </v-row>
+              <v-row justify="center">
+                <v-col cols="12" align="center" class="pb-0"><v-text-field color="teal"  label="Task Title" v-model="task.title" outlined dense required></v-text-field></v-col>
+                <!-- <v-col cols="2" align="center" class="pt-pb-0"><v-chip class="ma-0" color="primary">#111111</v-chip></v-col> -->
+              </v-row>
+              <v-row>
+                  <v-col cols="12" align="center">
+                    <v-textarea color="teal" append-icon="mdi-language-markdown" name="input-7-1" label="Description"  v-model="task.description" rows="20" outlined></v-textarea></v-col>
+                  <v-col cols="12" align="center">
+                      <v-btn elevation="2" rounded color="#385F73" dark v-on:click="save">Save</v-btn>
+                  </v-col>
+              </v-row>
             </v-container> 
         </v-card>
     </v-dialog>
@@ -43,7 +47,7 @@ export default {
       }else{
         this.dialog = !this.dialog
         const task = {
-          id: this.$store.state.tasks[this.group_name].length,
+          id: getUniqueID(),
           user_id: this.$store.state.user_id,
           group_id: this.group_name,
           title: this.task.title,
@@ -54,4 +58,12 @@ export default {
     }
   }
 }
+
+function getUniqueID(myStrong){
+  /* ToDoのIDを作成 */
+  var strong = 1000;
+  if (myStrong) strong = myStrong;
+  return new Date().getTime().toString(16)  + Math.floor(strong*Math.random()).toString(16)
+}
+
 </script>
