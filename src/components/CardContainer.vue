@@ -14,9 +14,12 @@
     </v-row>
     
     <v-row justify="center" >
-        <v-col cols='11' v-for="task in tasksByGroupName(group.name)" :key="task.id">
+      <draggable v-model="tasks" group="groups" @start="drag=true" @end="drag=false">
+        <!-- <v-col cols='12' v-for="task in tasksByGroupName(group.name)" :key="task.id"> -->
+          <v-col cols='12' v-for="task in tasks" :key="task.id">
           <Cardv2 :task="task"/>
         </v-col>
+      </draggable>
     </v-row>
 
     <v-row justify="center">
@@ -31,11 +34,13 @@
 import Dialog from '@/components/Dialog'
 import Cardv2 from './Cardv2.vue'
 import { mapGetters } from 'vuex'
+import draggable from 'vuedraggable'
 
 export default {
   props:['group'],
   data () {
     return {
+      tasks: this.$store.getters.tasksByGroupName(this.group.name),
       isEditting: false,
       oldName: '',
       rules: [
@@ -46,7 +51,8 @@ export default {
   },
   components: {
    Cardv2,
-   Dialog
+   Dialog,
+   draggable
   },
   methods: {
     onEditting (group) {
