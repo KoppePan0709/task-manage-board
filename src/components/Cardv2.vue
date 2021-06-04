@@ -62,7 +62,12 @@ export default ({
 
     },
     description: function () {
-      return marked(this.task.description)
+      if(this.task.description){
+        return marked(this.task.description)
+      }else{
+        return ''
+      }
+      
       // let string_org = marked(this.task.description)
       // const div = document.createElement('div')
       // const regexp_html = /(.[\s\S]*?)(?=<p><code)/
