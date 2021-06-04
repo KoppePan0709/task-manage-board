@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main class="pa-0">
     <v-container fluid class="pt-3 pb-0">
       <v-row dense>
         <v-col cols='3' v-for='group in groups' :key='group.id' class="mt-3">
