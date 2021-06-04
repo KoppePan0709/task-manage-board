@@ -16,9 +16,12 @@
         <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main class="pa-0">
+    <v-content class="pt-20">
       <router-view/>
-    </v-main>
+    </v-content>
+    <v-footer>
+      This is footer
+    </v-footer>
     
     </v-app>
   </div>
