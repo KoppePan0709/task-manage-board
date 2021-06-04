@@ -2,17 +2,18 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import api from  './api.js'
 
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user_id: 'userId_001',
+    user_id: '',
     groups: [],
     tasks: []
   },
   getters: {
     tasksByGroupName: (state) => (group_name) =>{
-      console.log('getters', state.tasks.filter( task => task.group_id === group_name))
+      console.log('getters: TaskByGroupName', state.tasks.filter( task => task.group_id === group_name))
       return state.tasks.filter( task => task.group_id === group_name)
     },
     taskById: (state) => (id) =>{
@@ -21,16 +22,20 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    signInUser (state, element) {
+      console.log('signInUser: uid = ', element)
+      state.user_id = element
+    },
     initGroups (state, element) {
       const index = state.groups.length
       Vue.set(state.groups, index, element)
-      Vue.set(state.tasks,element.name,[])
+      console.log('initGroups', state.groups)
+      // Vue.set(state.tasks,element.name,[])
     },
     initTasks (state, element) {
       const index = state.tasks.length
       Vue.set(state.tasks, index, element)
-      console.log('init', state.tasks)
-      Vue.nextTick
+      console.log('initTasks', element)
     },
     createTasks (state,task) {
       console.log('createTasks',task)
@@ -63,7 +68,7 @@ export default new Vuex.Store({
       api.getAllGroups(user_id).then(elements => {
         elements.forEach(element => {
           commit('initGroups', element)  
-          console.log(element)
+          console.log('initGroups: api.getAllGroups')
         });
       })
       .catch(err => console.log(err))
@@ -71,8 +76,8 @@ export default new Vuex.Store({
     initTasks ( { commit }, user_id){
       api.getAllTasks(user_id).then(elements => {
         elements.forEach(element => {
-          commit('initTasks', element)  
-          console.log(element)
+          commit('initTasks', element)
+          console.log('initTasks: api.getAllTasks')
         });
       })
       .catch(err => console.log(err))

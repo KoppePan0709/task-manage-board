@@ -11,14 +11,12 @@ export default {
 
 // get all tasks
 export async function getAllTasks(user_id) {
-
     const params = {
         user_id: user_id
     }
     const query = new URLSearchParams(params)
     const res = await fetch(`https://koppepan-todo-app-server.herokuapp.com/api/v1/cards/get/all?${query}` );
-    const data = await res.json()
-    
+    const data = await res.json()    
     return data.results
 }
 
@@ -29,7 +27,6 @@ export async function getAllGroups(user_id) {
     const query = new URLSearchParams(params)
     const res = await fetch(`https://koppepan-todo-app-server.herokuapp.com/api/v1/groups/get/all?${query}` );
     const data = await res.json();
-    console.log(data.results)
     return data.results
 }
 

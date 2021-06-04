@@ -11,7 +11,7 @@
           <v-list-item-title :class='`${item.color}--text`' @click="item.func(task)">{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
-      <v-overlay
+      <!-- <v-overlay
           :absolute="absolute"
           :value="overlay"
         >
@@ -21,7 +21,7 @@
           >
             Hide Overlay
           </v-btn>
-        </v-overlay>
+        </v-overlay> -->
     </v-menu>
 </template>
 
@@ -30,6 +30,7 @@
     props: ['task'],
     data() {
       return {
+        // absolute: true,
         overlay: false,
         items: [
         { title: 'Edit Tag', color: 'black', func: () => {this.overlay = true}},

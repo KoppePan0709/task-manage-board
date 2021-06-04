@@ -15,8 +15,8 @@
     
     <v-row justify="center" >
       <draggable v-model="tasks" group="groups" @start="drag=true" @end="drag=false">
-        <!-- <v-col cols='12' v-for="task in tasksByGroupName(group.name)" :key="task.id"> -->
-          <v-col cols='12' v-for="task in tasks" :key="task.id">
+        <v-col cols='12' v-for="task in tasksByGroupName(group.name)" :key="task.id">
+          <!-- <v-col cols='12' v-for="task in tasks" :key="task.id"> -->
           <Cardv2 :task="task"/>
         </v-col>
       </draggable>
@@ -86,5 +86,11 @@ export default {
   computed: mapGetters([
     'tasksByGroupName'
   ])
+  // computed: {
+  //   tasks (group) {
+  //     console.log('task', group.name)
+  //     return this.$store.state.tasks.filter( task => task.group_id === group.name)
+  //   }
+  // }
 }
 </script>

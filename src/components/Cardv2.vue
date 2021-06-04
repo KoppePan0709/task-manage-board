@@ -8,8 +8,7 @@
             <v-col cols="10"><v-card-title @click="openDialog" class="pa-0 text-h6 font-weight-bold">{{ task.title }}</v-card-title></v-col>
             <v-col cols="2" align-self="center"><CardMenu :task="task"/></v-col>
           </v-layout >
-          <v-col cols="12" ref="description" @click.stop="" align-self="center" v-html="description">
-          </v-col>
+          <v-col cols="12" ref="description" @click.stop="" align-self="center" v-html="description"></v-col>
           <v-col cols="12"><Dialog ref="isShow" :task="task" :isNew="false"/></v-col>
           <!-- <div class="highlight-json">
             <pre v-html="code"></pre>
@@ -63,7 +62,6 @@ export default ({
 
     },
     description: function () {
-      console.log('marked', marked(this.task.description))
       return marked(this.task.description)
       // let string_org = marked(this.task.description)
       // const div = document.createElement('div')
