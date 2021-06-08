@@ -1,6 +1,6 @@
 <template>
-  <v-col  cols="12" class="pa-0" >
-    <v-card color="#4c758a" width="350" dark >
+  <v-col class="pa-0" >
+    <v-card color="#4c758a" width="500" dark >
       <v-container class="pt-0">
         <v-row no-gutters>
           <v-layout wrap>
