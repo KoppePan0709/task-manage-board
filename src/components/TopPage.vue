@@ -1,11 +1,18 @@
 <template>
   <v-app id="inspire">
 
-    <v-app-bar app shrink-on-scroll dense>
+    <v-app-bar
+      app
+      shrink-on-scroll
+      dense
+      src="https://picsum.photos/1920/1080?random"
+      dark
+      height="50px"
+      >
     
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title >Markdown Card Board</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -28,10 +35,8 @@
 
     <v-content class="pt-20">
       
-      <v-container fluid class="pt-3 pb-0">
-      
-        <v-row dense>
-          
+      <v-container fluid class="pt-3 pb-0" >
+        <v-row dense>    
           <v-col
             cols='3'
             v-for='group in activeGroups'
@@ -44,10 +49,19 @@
         </v-row>
       </v-container>
 
+    </v-content>
+    
+    
+    <v-footer
+      app
+      color="white"
+      height="50px"
+    >
       <v-btn
         color="#4c758a"
         absolute
-        bottom
+        large
+        top
         right
         fab
         dark
@@ -57,11 +71,6 @@
       <v-icon>mdi-plus</v-icon>
       </v-btn>
       <addGroupDialog ref="openDialog"/>
-
-    </v-content>
-    
-    <v-footer>
-      This is footer
     </v-footer>
     
     </v-app>
@@ -74,7 +83,6 @@ import CardContainer from '@/components/CardContainer'
 import AddGroupDialog from '@/components/addGroupDialog.vue'
 import Navigation from '@/components/Navigation'
 import firebase from 'firebase'
-
 
 export default {
   data () {

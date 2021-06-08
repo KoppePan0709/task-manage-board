@@ -1,5 +1,5 @@
 <template>
-  <v-card width="400" class="ma-2">
+  <v-card width="400" class="ma-2" color="#e9e9e9" elevation="2">
     <v-row justify="center" >                
       <template v-if="isEditting">
         <v-col cols='11' align-self="center">
@@ -89,3 +89,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+p {
+  color: #e9e9e9;
+}
+</style>

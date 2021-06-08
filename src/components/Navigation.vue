@@ -6,31 +6,47 @@
         multiple
         v-model="selected"
       >
+      <v-list-item disabled>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6">
+            Groups
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            Choose groups to show in board
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
         <template v-for="(group, index) in groups">
+          
+
+          
           <v-list-item :key="group.name" @click="activeGroup(group)">
+            
             <template v-slot:default="{ active }">
-              <v-list-item-content>
-
-                <v-list-item-title v-text="group.name"></v-list-item-title>
-
-              </v-list-item-content>
-
               <v-list-item-action >
 
                 <v-icon
                   v-if="active"
                   color="green lighten-1"
                 >
-                  mdi-check
+                  mdi-card
                 </v-icon>
 
                 <v-icon
                   v-else
-                  color="grey darken-3"
+                  color="grey darken-0"
                 >
-                  mdi-check
+                  mdi-card-off-outline
                 </v-icon>
               </v-list-item-action>
+              <v-list-item-content>
+                
+
+                <v-list-item-title v-text="group.name"></v-list-item-title>
+
+              </v-list-item-content>
+
+              
             </template>
           </v-list-item>
 
@@ -66,7 +82,7 @@ export default {
       const groups = this.$store.state.groups
       const activeGroupIndex = groups.reduce(function(accumulator, currentValue, index) {
         if (currentValue.active === true) {
-          accumulator.push(index);
+          accumulator.push(index + 1);
           }
         return accumulator;
         }, [])
@@ -86,8 +102,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-p {
-  color: #00aaff;
-}
-</style>
