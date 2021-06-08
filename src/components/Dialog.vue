@@ -44,6 +44,7 @@ export default {
         this.dialog = !this.dialog
         console.log('FIRE')
         this.$store.dispatch('updateTasks', this.task)
+        this.task = ''
       }else{
         this.dialog = !this.dialog
         const task = {
@@ -54,6 +55,7 @@ export default {
           description: this.task.description
         }
         this.$store.dispatch('createTasks', task)
+        this.task = ''
       }
     }
   }

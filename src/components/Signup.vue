@@ -6,7 +6,7 @@
           <v-row justify="center" align-content="center">
             <v-col cols="6" align-self="center">
               <v-card-title class="justify-center text-h4">
-               Hello My Friend
+               Join us
                </v-card-title>
             </v-col>
             <v-divider vertical></v-divider>
