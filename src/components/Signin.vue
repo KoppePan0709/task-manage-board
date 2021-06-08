@@ -1,28 +1,42 @@
 <template>
 <v-app>
   <div class="signin" >
-     <v-card width="400px" class="mx-auto mt-5">
-      <v-card-title class="justify-center text-h4">
-        Sign In
-      </v-card-title>
-      <v-card-text>
-        <v-form>
-          <v-text-field prepend-icon="mdi-account-circle" label="Username" v-model="username"/>
-          <v-text-field 
-            v-bind:type="showPassword ? 'text' : 'password'"
-            @click:append="showPassword = !showPassword"
-            prepend-icon="mdi-lock" 
-            append-icon="mdi-eye-off" 
-            label="パスワード" 
-            v-model="password"/> 
-          <v-card-actions>
-            <v-btn class="info" @click="signIn" color="green">Sign in</v-btn>
-          </v-card-actions>
-          <p>You don't have an account? 
-            <router-link to="/signup">create account now!!</router-link>
-          </p>
-        </v-form>
-      </v-card-text>
+     <v-card width="700px" class="mx-auto mt-5" rounded="xl">
+       <v-container>
+         <v-row justify="center" align-content="center">
+           <v-col cols="6">
+             <v-card-title class="justify-center text-h4 cyan--text text--darken-4" >
+               Sign In
+               </v-card-title>
+              <v-card-text>
+                <v-form>
+                  <v-text-field prepend-icon="mdi-account-circle" label="Username" v-model="username"/>
+                  <v-text-field 
+                    v-bind:type="showPassword ? 'text' : 'password'"
+                    @click:append="showPassword = !showPassword"
+                    prepend-icon="mdi-lock" 
+                    append-icon="mdi-eye-off" 
+                    label="パスワード" 
+                    v-model="password"/> 
+                  <v-card-actions>
+                    <v-btn  @click="signIn" color="#4c758a" dark>Sign in</v-btn>
+                  </v-card-actions>
+                  <p>You don't have an account? 
+                    <router-link to="/signup">create account now!!</router-link>
+                  </p>
+                </v-form>
+              </v-card-text>
+           </v-col>
+           <v-divider vertical></v-divider>
+           <v-col cols="6" align-self="center">
+             <v-card-title class="justify-center text-h4 cyan--text text--darken-4">
+               Hello My Friend
+               </v-card-title>
+           </v-col>
+         </v-row>
+       </v-container>
+       
+      
     </v-card>
   </div>
   </v-app>
@@ -67,30 +81,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.signin {
-  margin-top: 20px;
 
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center
+#app {
+  background: url('https://picsum.photos/1920/1080?random')
+    no-repeat center center fixed !important;
+  background-size: cover;
 }
-input {
-  margin: 10px 0;
-  padding: 10px;
-}
+
 </style>

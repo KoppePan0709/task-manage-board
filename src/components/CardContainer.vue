@@ -1,5 +1,5 @@
 <template>
-  <v-card width="600" class="ma-2" color="#e9e9e9" elevation="2">
+  <v-card width="600" class="ma-2" color="#e9e9e9" elevation="4">
     <v-row justify="center" >                
       <template v-if="isEditting">
         <v-col cols='11' align-self="center">
@@ -14,11 +14,11 @@
     </v-row>
     
     <v-row justify="center" >
-      <draggable v-model="tasksByGroupName" group="groups" @start="drag=true" @end="drag=false">
-          <v-col cols='12' v-for="task in tasksByGroupName" :key="task.id">
+      <!-- <draggable v-model="tasksByGroupName" group="groups" @start="drag=true" @end="drag=false"> -->
+          <v-col cols='11' v-for="task in tasksByGroupName" :key="task.id">
           <Cardv2 :task="task"/>
         </v-col>
-      </draggable>
+      <!-- </draggable> -->
     </v-row>
 
     <v-row justify="center">
@@ -33,7 +33,7 @@
 import Dialog from '@/components/Dialog'
 import Cardv2 from './Cardv2.vue'
 // import { mapGetters } from 'vuex'
-import draggable from 'vuedraggable'
+// import draggable from 'vuedraggable'
 
 export default {
   props:['group'],
@@ -50,7 +50,7 @@ export default {
   components: {
    Cardv2,
    Dialog,
-   draggable
+  //  draggable
   },
   methods: {
     onEditting (group) {

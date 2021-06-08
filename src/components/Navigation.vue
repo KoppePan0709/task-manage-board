@@ -2,14 +2,14 @@
 <div>
      <v-list>
       <v-list-item-group
-        active-class="green--text"
+        active-class="teal--text"
         multiple
         v-model="selected"
       >
       <v-list-item disabled>
         <v-list-item-content>
           <v-list-item-title class="text-h6">
-            Groups
+            Your Groups
           </v-list-item-title>
           <v-list-item-subtitle>
             Choose groups to show in board
@@ -27,7 +27,7 @@
 
                 <v-icon
                   v-if="active"
-                  color="green lighten-1"
+                  color="teal lighten-1"
                 >
                   mdi-card
                 </v-icon>

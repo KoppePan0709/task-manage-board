@@ -4,7 +4,7 @@
       <v-container class="pt-0">
         <v-row no-gutters>
           <v-layout wrap>
-            <v-col cols="10"><v-card-title @click="openDialog" class="pa-0 text-h6 font-weight-bold">{{ task.title }}</v-card-title></v-col>
+            <v-col cols="10"><v-card-title @click="openDialog" class="pa-0 text-h6 font-weight-bold" >{{ task.title }}</v-card-title></v-col>
             <v-col cols="2" align-self="center"><CardMenu :task="task"/></v-col>
           </v-layout >
           <v-col cols="12" ref="description" @click.stop="" align-self="center" v-html="description"></v-col>

@@ -15,12 +15,8 @@
       <v-toolbar-title >Markdown Card Board</v-toolbar-title>
 
       <v-spacer></v-spacer>
-
-      <v-btn
-        icon
-        @click="signOut"
-      >
-      <v-icon>mdi-logout</v-icon></v-btn>
+      
+      <Menu/>
     </v-app-bar>
     
 
@@ -82,14 +78,18 @@ import { mapState } from 'vuex'
 import CardContainer from '@/components/CardContainer'
 import AddGroupDialog from '@/components/addGroupDialog.vue'
 import Navigation from '@/components/Navigation'
-import firebase from 'firebase'
+import Menu from '@/components/Menu'
 
 export default {
   data () {
     return {
       drawer: false,
       showDialog: false,
-      // isEditting: false
+      lists: [
+        { name: 'setting', icon: 'mdi-cog'},
+        { name: 'account', icon: 'mdi-account'},
+        { name: 'SignOut', icon: 'mdi-logout'}
+      ]
     }
   },
   created () {
@@ -100,7 +100,8 @@ export default {
   components: {
     CardContainer,
     AddGroupDialog,
-    Navigation
+    Navigation,
+    Menu
   },
   computed: {
     ...mapState([
@@ -116,11 +117,6 @@ export default {
     openDialog () {
       this.$refs.openDialog.openDialog()
     },
-    signOut: function () {
-      firebase.auth().signOut().then(() => {
-        this.$router.push('/signin')
-      })
-    }
   }
 }
 </script>
