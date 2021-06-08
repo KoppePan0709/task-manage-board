@@ -5,14 +5,14 @@
       app
       shrink-on-scroll
       dense
-      src="https://picsum.photos/1920/1080?random"
+      src="https://picsum.photos/id/384/1920/1080"
       dark
       height="50px"
       >
     
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title >Markdown Card Board</v-toolbar-title>
+      <v-toolbar-title >Markdown Note</v-toolbar-title>
 
       <v-spacer></v-spacer>
       

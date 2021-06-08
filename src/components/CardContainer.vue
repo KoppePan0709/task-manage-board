@@ -23,7 +23,7 @@
 
     <v-row justify="center">
       <v-col cols="11"><v-btn block color="#d8d8d8" elevation="0" @click="openDialog()">+ new card</v-btn></v-col>
-      <div><Dialog ref="isShow" :group_name="group.name" :task="{}" :isNew="true"/></div>
+      <div><Dialog ref="isShow" :group_name="group.name" :task="{title: '', description: ''}" :isNew="true"/></div>
     </v-row>
 
   </v-card>
