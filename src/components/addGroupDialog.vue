@@ -24,7 +24,8 @@
         <v-col cols="12">
           <v-btn
           :disabled="!valid"
-          color="success"
+          color="#4c758a"
+          dark
           class="mr-4"
           @click="validate"
           >
@@ -51,15 +52,15 @@
       }
       
     },
-
     methods: {
       validate () {
         if(this.$refs.form.validate() === true){
           this.dialog = !this.dialog 
           const group = {
-          id: getUniqueID(),
-          user_id: this.$store.state.user_id,
-          name: this.groupName,
+            id: getUniqueID(),
+            user_id: this.$store.state.user_id,
+            name: this.groupName,
+            active: true
           }
           this.$store.dispatch('createGroups', group)
         }else {

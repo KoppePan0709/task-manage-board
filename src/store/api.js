@@ -63,6 +63,7 @@ export async function createGroups(group){
             id: group.id,
             user_id: group.user_id,
             name: group.name,
+            active: group.active,
         }
     )
     const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/groups/create', {method, headers, body});
@@ -101,6 +102,7 @@ export async function updateGroups(group){
             id: group.id,
             user_id: group.user_id,
             name: group.name,
+            active: group.active,
         }
     )
     const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/groups/update', {method, headers, body});

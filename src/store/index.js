@@ -61,7 +61,7 @@ export default new Vuex.Store({
       console.log('API updateGroups', group)
       const index = state.groups.findIndex( _group => _group.id === group.id)
       Vue.set(state.groups,index, group)
-    }
+    },
   },
   actions: {
     initGroups ( { commit }, user_id){

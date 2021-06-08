@@ -14,9 +14,8 @@
     </v-row>
     
     <v-row justify="center" >
-      <draggable v-model="tasks" group="groups" @start="drag=true" @end="drag=false">
-        <v-col cols='12' v-for="task in tasksByGroupName(group.name)" :key="task.id">
-          <!-- <v-col cols='12' v-for="task in tasks" :key="task.id"> -->
+      <draggable v-model="tasksByGroupName" group="groups" @start="drag=true" @end="drag=false">
+          <v-col cols='12' v-for="task in tasksByGroupName" :key="task.id">
           <Cardv2 :task="task"/>
         </v-col>
       </draggable>
@@ -33,14 +32,13 @@
 <script>
 import Dialog from '@/components/Dialog'
 import Cardv2 from './Cardv2.vue'
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 import draggable from 'vuedraggable'
 
 export default {
   props:['group'],
   data () {
     return {
-      tasks: this.$store.getters.tasksByGroupName(this.group.name),
       isEditting: false,
       oldName: '',
       rules: [
@@ -83,14 +81,11 @@ export default {
       this.$refs.isShow.isShow()
     }
   },
-  computed: mapGetters([
-    'tasksByGroupName'
-  ])
-  // computed: {
-  //   tasks (group) {
-  //     console.log('task', group.name)
-  //     return this.$store.state.tasks.filter( task => task.group_id === group.name)
-  //   }
-  // }
+  computed: {
+    tasksByGroupName () {
+      console.log('CardContainer.computed.tasksByGroupName', this.group)
+      return this.$store.state.tasks.filter( task => task.group_id === this.group.name)
+    }
+  }
 }
 </script>

@@ -1,6 +1,5 @@
 <template>
   <v-col  cols="12" class="pa-0" >
-    <!-- <v-card color="#385F73" width="350" dark class="overflow-hidden"> -->
     <v-card color="#4c758a" width="350" dark >
       <v-container class="pt-0">
         <v-row no-gutters>
@@ -104,8 +103,3 @@ export default ({
   }
 })
 </script>
-<style scoped>
-pre {
-	white-space: pre-wrap ;
-}
-</style>

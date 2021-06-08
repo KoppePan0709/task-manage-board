@@ -1,8 +1,9 @@
 <template>
-  <div class="signin">
+<v-app>
+  <div class="signin" >
      <v-card width="400px" class="mx-auto mt-5">
-      <v-card-title>
-        <h3 class="display-1">Sign In</h3>
+      <v-card-title class="justify-center text-h4">
+        Sign In
       </v-card-title>
       <v-card-text>
         <v-form>
@@ -15,7 +16,7 @@
             label="パスワード" 
             v-model="password"/> 
           <v-card-actions>
-            <v-btn class="info" @click="signIn">Sign in</v-btn>
+            <v-btn class="info" @click="signIn" color="green">Sign in</v-btn>
           </v-card-actions>
           <p>You don't have an account? 
             <router-link to="/signup">create account now!!</router-link>
@@ -24,6 +25,7 @@
       </v-card-text>
     </v-card>
   </div>
+  </v-app>
 </template>
 
 <script>
@@ -35,7 +37,12 @@ export default {
     return {
       username: '',
       password: '',
-      showPassword : false
+      showPassword : false,
+      authMethods: [
+        { text: 'email', icon: 'mdi-email', disabled: false ,color: "primary"},
+        { text: 'GitHub', icon: 'mdi-github', disabled: true,  color: "black"},
+        { text: 'Google', icon: 'mdi-google', disabled: true, color: "red"},
+      ],
     }
   },
   methods: {

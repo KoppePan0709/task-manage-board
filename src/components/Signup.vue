@@ -1,4 +1,5 @@
 <template>
+<v-app>
   <div class="signup">
       <v-card width="400px" class="mx-auto mt-5" dark color="#494949">
       <v-card-title>
@@ -24,6 +25,7 @@
       </v-card-text>
     </v-card>
   </div>
+  </v-app>
 </template>
 
 <script>
