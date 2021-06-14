@@ -2,10 +2,11 @@ export default {
     getAllTasks,
     getAllGroups,
     createTasks,
-    createGroups,
     updateTasks,
+    deleteTasks,
+    createGroups,
     updateGroups,
-    deleteTasks
+    deleteGroups
 }
 
 
@@ -127,6 +128,24 @@ export async function deleteTasks(task){
         }
     )
     const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/cards/delete', {method, headers, body});
+    const data = await res.json();
+    console.log(data.results)
+    return data.results
+}
+
+export async function deleteGroups(group){
+    console.log('Delete Groups API Fired')
+    const method = 'POST';
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const body = JSON.stringify(
+        {
+            id: group.id,
+            user_id: group.user_id,
+        }
+    )
+    const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/groups/delete', { method, headers, body});
     const data = await res.json();
     console.log(data.results)
     return data.results

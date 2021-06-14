@@ -34,7 +34,7 @@
       <v-container fluid class="pt-3 pb-0" >
         <v-row dense>    
           <v-col
-            cols="4"
+            cols="2"
             v-for='group in activeGroups'
             :key='group.id'
             class="mt-3"

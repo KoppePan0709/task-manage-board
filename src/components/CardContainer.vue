@@ -1,39 +1,41 @@
 <template>
   <v-card width="600" class="ma-2" color="#e9e9e9" elevation="4">
-    <v-row justify="center" >                
+    <v-row justify="center" class="pa-3 pb-0 pt-0">                
       <template v-if="isEditting">
-        <v-col cols='11' align-self="center">
-          <v-text-field label="Group Name" :rules="rules" hide-details="auto" autofocus @blur="offEditting(group); changeGroupName(group);" v-model="group.name"></v-text-field>
-      </v-col>
+        <v-col cols='10' align-self="center">
+          <v-text-field label="Group Name" :rules="rules" hide-details="auto" autofocus @blur="offEditting(group); tasksByGroupId(group);" v-model="group.name"></v-text-field>
+        </v-col>
       </template>
       <template v-else>
-        <v-col cols='11' align-self="center" class="pa-0 pl-5" @click="onEditting(group)">
+        <v-col cols='9' align-self="center" class="pa-0 pl-5" @click="onEditting(group)">
           <v-card-title class="text-h6 pa-0 pt-2">{{ group.name }}</v-card-title>
+        </v-col>
+        <v-col cols="3" align-self="center">
+          <ContainerMenu :group="group"/>
         </v-col>
       </template>
     </v-row>
     
     <v-row justify="center" >
       <!-- <draggable v-model="tasksByGroupName" group="groups" @start="drag=true" @end="drag=false"> -->
-          <v-col cols='11' v-for="task in tasksByGroupName" :key="task.id">
-          <Cardv2 :task="task"/>
+          <v-col cols='11' v-for="task in tasksByGroupId" :key="task.id">
+          <Card :task="task"/>
         </v-col>
       <!-- </draggable> -->
     </v-row>
 
     <v-row justify="center">
       <v-col cols="11"><v-btn block color="#d8d8d8" elevation="0" @click="openDialog()">+ new card</v-btn></v-col>
-      <div><Dialog ref="isShow" :group_name="group.name" :task="{title: '', description: ''}" :isNew="true"/></div>
+      <div><CreateCardDialog ref="CreateCardDialog" :group_id="group.id"/></div>
     </v-row>
 
   </v-card>
 </template>
 
 <script>
-import Dialog from '@/components/Dialog'
-import Cardv2 from './Cardv2.vue'
-// import { mapGetters } from 'vuex'
-// import draggable from 'vuedraggable'
+import Card from '@/components/Card.vue'
+import ContainerMenu from '@/components/ContainerMenu'
+import CreateCardDialog from '@/components/CreateCardDialog'
 
 export default {
   props:['group'],
@@ -48,8 +50,9 @@ export default {
     }
   },
   components: {
-   Cardv2,
-   Dialog,
+   Card,
+   ContainerMenu,
+   CreateCardDialog,
   //  draggable
   },
   methods: {
@@ -66,25 +69,22 @@ export default {
       console.log('change Fire')
       this.$store.dispatch('updateGroups', group)
       // group名を変更するtaskを取得
-      const tasks = this.$store.getters.tasksByGroupName(this.oldName)
-      console.log('tasks', tasks)
-      // task一つずつupdate
-      tasks.forEach(task => {
-        task.group_id = group.name
-        console.log('changeGroupName', task)
-        this.$store.dispatch('updateTasks', task)
-      });
+      // const tasks = this.$store.getters.tasksByGroupId(group.id)
+      // console.log('tasks', tasks)
+      // // task一つずつupdate
+      // tasks.forEach(task => {
+      //   task.group_id = group.name
+      //   console.log('changeGroupName', task)
+      //   this.$store.dispatch('updateTasks', task)
+      // });
     },
     openDialog () {
-      console.log('Fire')
-      console.log(this.$refs.isShow)
-      this.$refs.isShow.isShow()
+      this.$refs.CreateCardDialog.openDialog()
     }
   },
   computed: {
-    tasksByGroupName () {
-      console.log('CardContainer.computed.tasksByGroupName', this.group)
-      return this.$store.state.tasks.filter( task => task.group_id === this.group.name)
+    tasksByGroupId () {
+      return this.$store.state.tasks.filter( task => task.group_id === this.group.id)
     }
   }
 }

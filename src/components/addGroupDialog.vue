@@ -18,6 +18,7 @@
               :rules="nameRules"
               label="New Group Name"
               required
+              color="green"
             ></v-text-field>
           </v-form>
         </v-col>
@@ -25,8 +26,7 @@
           <v-btn
           :disabled="!valid"
           color="#4c758a"
-          dark
-          class="mr-4"
+          class="mr-4 white--text"
           @click="validate"
           >
           Create

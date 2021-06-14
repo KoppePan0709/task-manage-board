@@ -12,9 +12,13 @@ export default new Vuex.Store({
     tasks: []
   },
   getters: {
-    tasksByGroupName: (state) => (group_name) =>{
-      console.log('getters: TaskByGroupName', state.tasks.filter( task => task.group_id === group_name))
-      return state.tasks.filter( task => task.group_id === group_name)
+    // tasksByGroupName: (state) => (group_name) =>{
+    //   console.log('getters: TaskByGroupName', state.tasks.filter( task => task.group_id === group_name))
+    //   return state.tasks.filter( task => task.group_id === group_name)
+    // },
+    tasksByGroupId: (state) => (group_id) =>{
+      console.log('getters: TaskByGroupId', state.tasks.filter( task => task.group_id === group_id))
+      return state.tasks.filter( task => task.group_id === group_id)
     },
     taskById: (state) => (id) =>{
       console.log('getters: taskById', state.tasks.filter( task => task.id === id))
@@ -42,10 +46,6 @@ export default new Vuex.Store({
       const index = state.tasks.length
       Vue.set(state.tasks,index, task)  
     },
-    createGroups (state,group) {
-      const index = state.groups.length
-      Vue.set(state.groups,index, group)
-    },
     updateTasks (state,task) {
       console.log('updateTasks', task)
       const index = state.tasks.findIndex( _task => _task.id === task.id)
@@ -57,11 +57,19 @@ export default new Vuex.Store({
       console.log(index)
       Vue.delete(state.tasks, index)
     },
+    createGroups (state,group) {
+      const index = state.groups.length
+      Vue.set(state.groups,index, group)
+    },
     updateGroups (state, group) {
       console.log('API updateGroups', group)
       const index = state.groups.findIndex( _group => _group.id === group.id)
       Vue.set(state.groups,index, group)
     },
+    deleteGroups (state, group) {
+      const index = state.groups.findIndex( _group => _group.id === group.id)
+      Vue.delete(state.groups, index)
+    }
   },
   actions: {
     initGroups ( { commit }, user_id){
@@ -112,6 +120,12 @@ export default new Vuex.Store({
         console.log(results)
       }).catch( err => console.log(err))
       commit('deleteTasks', task)
+    },
+    deleteGroups ( { commit }, group) {
+      api.deleteGroups(group).then( results => {
+        console.log(results)
+      }).catch( err => console.log(err))
+      commit('deleteGroups', group)
     }
   }
 });
