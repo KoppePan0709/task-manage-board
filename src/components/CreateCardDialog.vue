@@ -1,7 +1,7 @@
 <template>
 <div>
   <v-dialog v-model="dialog" max-width="600">
-    <v-card color="green" dark>
+    <v-card color="#e9e9e9" >
           <v-form
             ref="form"
             v-model="valid"
@@ -11,7 +11,7 @@
           <v-layout column >
           <v-card-title class="pa-0"><v-icon class="pr-3">mdi-subtitles-outline</v-icon>Title</v-card-title>
           <v-text-field
-              color="white"
+              color="grey"
               :rules="rules"
               v-model="task.title"
               dense
@@ -20,8 +20,8 @@
              ></v-text-field>
           <v-card-title class="pa-0"><v-icon class="pr-3">mdi-language-markdown</v-icon>Description</v-card-title>
           <v-textarea
-              color="white"
               name="input-7-1"
+              color="grey"
               v-model="task.description"
               rows="15"
               outlined
@@ -29,9 +29,8 @@
               
           <v-btn                     
                 v-on:click="save"
-                color="white"
                 outlined
-                dark
+                
               >Save</v-btn>
           </v-layout>
         </v-form>
@@ -68,7 +67,8 @@ export default {
           user_id: this.$store.state.user_id,
           group_id: this.group_id,
           title: this.task.title,
-          description: this.task.description
+          description: this.task.description,
+          color: "#4c758a"
         }
         this.$store.dispatch('createTasks', task)
         this.task.title = ''

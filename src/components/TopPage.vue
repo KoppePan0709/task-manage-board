@@ -37,7 +37,7 @@
             cols="2"
             v-for='group in activeGroups'
             :key='group.id'
-            class="mt-3"
+            class="ma-1 mt-3"
           >
             <CardContainer :group="group"/>
           </v-col>

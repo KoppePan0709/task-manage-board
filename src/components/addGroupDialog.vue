@@ -14,7 +14,7 @@
           >
             <v-text-field
               v-model="groupName"
-              :counter="10"
+              :counter="33"
               :rules="nameRules"
               label="New Group Name"
               required
@@ -47,7 +47,7 @@
         groupName: '',
         nameRules: [
           v => !!v || 'Name is required',
-          v => (v && v.length <= 20) || 'Name must be less than 20 characters',
+          v => (v && v.length <= 33) || 'Name must be less than 33 characters',
         ]
       }
       
@@ -62,6 +62,7 @@
             name: this.groupName,
             active: true
           }
+          this.groupName = ''
           this.$store.dispatch('createGroups', group)
         }else {
           console.log(this.$refs.form.validate())

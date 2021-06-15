@@ -1,21 +1,23 @@
 <template>
 <div>
   <v-dialog v-model="dialog" max-width="600"  @input="v => v || offEditting()">
-    <v-card v-if="!editting" color="#4c758a" dark >
+    <v-card v-if="!editting" :color="task.color" dark >
       <v-container>
         <v-row no-gutters class="pa-4">
           <v-layout wrap>
             <v-col cols="10">
               <v-card-title class="pa-0 text-h6 font-weight-bold" >{{ task.title }}</v-card-title>
             </v-col>
-            <v-col cols="1" align-self="right"><v-icon  @click="onEditting()">mdi-square-edit-outline</v-icon></v-col>
-            <v-col cols="1" align-self="right"><v-icon>mdi-delete</v-icon></v-col>
+            <!-- <v-col cols="1" align-self="right"><v-icon  @click="onEditting()">mdi-square-edit-outline</v-icon></v-col> -->
+            <v-col cols="1" ><v-icon  @click="onEditting()">mdi-square-edit-outline</v-icon></v-col>
+            <!-- <v-col cols="1" align-self="right"><v-icon>mdi-delete</v-icon></v-col> -->
+            <v-col cols="1" ><v-icon>mdi-delete</v-icon></v-col>
           </v-layout >
           <v-col cols="12" ref="description" @click.stop="" align-self="center" v-html="description"></v-col>
         </v-row>
       </v-container>
     </v-card>
-    <v-card v-else color="green" dark>
+    <v-card v-else :color="task.color" dark>
           <v-form
             ref="form"
             v-model="valid"

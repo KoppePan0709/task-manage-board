@@ -44,7 +44,8 @@ export async function createTasks(task){
             user_id: task.user_id,
             group_id: task.group_id,
             title: task.title,
-            description: task.description
+            description: task.description,
+            color: task.color
         }
     )
     const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/cards/create', {method, headers, body});
@@ -84,7 +85,8 @@ export async function updateTasks(task){
             user_id: task.user_id,
             group_id: task.group_id,
             title: task.title,
-            description: task.description
+            description: task.description,
+            color: task.color
         }
     )
     const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/cards/update', {method, headers, body});
@@ -124,7 +126,8 @@ export async function deleteTasks(task){
             user_id: task.user_id,
             group_id: task.group_id,
             title: task.title,
-            description: task.description
+            description: task.description,
+            color: task.color
         }
     )
     const res = await fetch('https://koppepan-todo-app-server.herokuapp.com/api/v1/cards/delete', {method, headers, body});

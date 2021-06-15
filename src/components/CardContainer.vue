@@ -3,14 +3,14 @@
     <v-row justify="center" class="pa-3 pb-0 pt-0">                
       <template v-if="isEditting">
         <v-col cols='10' align-self="center">
-          <v-text-field label="Group Name" :rules="rules" hide-details="auto" autofocus @blur="offEditting(group); tasksByGroupId(group);" v-model="group.name"></v-text-field>
+          <v-text-field label="Group Name" :rules="rules" hide-details="auto" autofocus @blur="offEditting(group); changeGroupName(group);" v-model="group.name"></v-text-field>
         </v-col>
       </template>
       <template v-else>
         <v-col cols='9' align-self="center" class="pa-0 pl-5" @click="onEditting(group)">
           <v-card-title class="text-h6 pa-0 pt-2">{{ group.name }}</v-card-title>
         </v-col>
-        <v-col cols="3" align-self="center">
+        <v-col cols="3" align-self="center" class="pb-0">
           <ContainerMenu :group="group"/>
         </v-col>
       </template>
@@ -59,7 +59,7 @@ export default {
     onEditting (group) {
       this.oldName = group.name
       this.isEditting = !this.isEditting
-      this.$refs.groupName.focus();
+      // this.$refs.groupName.focus();
       console.log(this.oldName)
     },
     offEditting () {
@@ -89,9 +89,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-p {
-  color: #e9e9e9;
-}
-</style>

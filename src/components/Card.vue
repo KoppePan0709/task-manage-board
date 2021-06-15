@@ -1,20 +1,25 @@
 <template>
   <v-col class="pa-0" >
-    <v-card color="#4c758a" max-width="500" dark  @click="openDialog" >
-      <v-img
-            class="white--text align-end"
-            height="10px"
-            src="https://picsum.photos/id/384/200/300"
-            ></v-img>
+    <v-card :color="task.color" max-width="500" dark  @click="openDialog">
       <v-container class="pt-pb-0">
         <v-row no-gutters>
           <v-layout wrap>
-            <v-col cols="10" class="pa-0 pt-1"><v-card-title class="pa-0 text-h6 font-weight-bold" >{{ task.title }}</v-card-title></v-col>
-            <v-col cols="2" class="pa-0" align-self="top"><CardMenu :task="task"/></v-col>
+            <v-col cols="10" class="pa-0 pt-1">
+              <v-card-text class="pa-0 font-weight-bold" >{{ task.title }}</v-card-text>
+            </v-col>
+            <!-- <v-col cols="2" class="pa-0" align-self="top"> -->
+              <v-col cols="2" class="pa-0">
+              <CardMenu :task="task"/>
+            </v-col>
           </v-layout >
-          <v-col cols="12" ref="description" @click.stop="" align-self="center" class="ma-pa-0"><v-card-subtitle class="pa-0" v-html="description"></v-card-subtitle></v-col>
-          <!-- <v-col cols="12" ref="description" @click.stop="" align-self="center" v-html="description"></v-col> -->
-          <v-col cols="12" class="pa-0"><Dialog ref="isShow" :task="task" :isNew="false"/></v-col>
+          <!-- <v-col cols="12" ref="description" @click.stop="" align-self="center" class="ma-pa-0"> -->
+          <v-col cols="12" ref="description" @click.stop=""  class="ma-pa-0">
+            <v-card-subtitle class="pa-0" v-html="description"></v-card-subtitle>
+          </v-col>
+
+          <v-col cols="12" class="pa-0">
+            <Dialog ref="isShow" :task="task" :isNew="false"/>
+          </v-col>
           <!-- <div class="highlight-json">
             <pre v-html="code"></pre>
           </div> -->
@@ -31,13 +36,12 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/xcode.css';
 import Dialog from '@/components/Dialog'
 import marked from 'marked'
-// import Vue from 'vue'
 
-export default ({
+
+export default {
   props: ['task'],
   data() {
     return {
-      div: ''
     }
   },
   components: {
@@ -63,8 +67,6 @@ export default ({
       const code = 'for (let i = 0; i < cnt; i ++){\
       \n console.log(i)}'
       return hljs.highlightAuto(code,['javascript']).value
-       
-
     },
     description: function () {
       if (this.task.description) {
@@ -73,7 +75,7 @@ export default ({
         const max_length = 20
         const ommision = '...'
         if ( lenght <= max_length) {          
-          console.log( marked(string))
+          console.log( 'heyhey', marked(string))
           return string
           
         }else {          
@@ -129,5 +131,5 @@ export default ({
       return value.substring(0, length) + ommision;
     }
   },
-})
+}
 </script>
