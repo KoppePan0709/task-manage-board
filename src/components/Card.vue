@@ -13,7 +13,7 @@
             </v-col>
           </v-layout >
           <!-- <v-col cols="12" ref="description" @click.stop="" align-self="center" class="ma-pa-0"> -->
-          <v-col cols="12" ref="description" @click.stop=""  class="ma-pa-0">
+          <v-col cols="12" ref="description" class="ma-pa-0">
             <v-card-subtitle class="pa-0" v-html="description"></v-card-subtitle>
           </v-col>
 
