@@ -27,8 +27,15 @@
               outlined
               ></v-textarea>
               
-          <v-btn                     
+          <!-- <v-btn                     
                 v-on:click="save"
+                outlined
+                
+              >Save</v-btn> -->
+              <v-btn
+                :disabled="!valid"
+                              
+                @click="validate"
                 outlined
                 
               >Save</v-btn>
@@ -45,10 +52,12 @@ export default {
   data () {
       return {
           dialog: false,
-          task: { title: '', description: ''},
           valid: true,
+          task: { title: '', description: ''},
+          
           rules: [
             v => !!v || 'Name is required',
+            v => (v && v.length <= 33) || 'Name must be less than 33 characters',
           ],
       }
   },
@@ -57,12 +66,9 @@ export default {
       this.dialog = !this.dialog
     },
     validate () {
-        this.$refs.form.validate()
-      },
-    save () {
-      console.log('createCardDialog: save()')
-      this.dialog = !this.dialog
-        const task = {
+        if(this.$refs.form.validate() === true){
+          this.dialog = !this.dialog 
+          const task = {
           id: getUniqueID(),
           user_id: this.$store.state.user_id,
           group_id: this.group_id,
@@ -73,7 +79,25 @@ export default {
         this.$store.dispatch('createTasks', task)
         this.task.title = ''
         this.task.description = ''
-    },
+        }else {
+          console.log(this.$refs.form.validate())
+        }
+      },
+    // save () {
+    //   console.log('createCardDialog: save()')
+    //   this.dialog = !this.dialog
+    //     const task = {
+    //       id: getUniqueID(),
+    //       user_id: this.$store.state.user_id,
+    //       group_id: this.group_id,
+    //       title: this.task.title,
+    //       description: this.task.description,
+    //       color: "#4c758a"
+    //     }
+    //     this.$store.dispatch('createTasks', task)
+    //     this.task.title = ''
+    //     this.task.description = ''
+    // },
   }
 }
 

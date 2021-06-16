@@ -88,7 +88,19 @@ export default {
     //   document.body.removeChild(input);
     // },
     validate () {
-        this.$refs.form.validate()
+        if(this.$refs.form.validate() === true){
+          this.dialog = !this.dialog 
+          const group = {
+            id: getUniqueID(),
+            user_id: this.$store.state.user_id,
+            name: this.groupName,
+            active: true
+          }
+          this.groupName = ''
+          this.$store.dispatch('createGroups', group)
+        }else {
+          console.log(this.$refs.form.validate())
+        }
       },
     isShow () {
       this.dialog = !this.dialog
