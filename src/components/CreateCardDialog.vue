@@ -77,8 +77,10 @@ export default {
           color: "#4c758a"
         }
         this.$store.dispatch('createTasks', task)
-        this.task.title = ''
-        this.task.description = ''
+        // this.task.title = ''
+        // this.task.description = ''
+        this.$refs.form.reset()
+        
         }else {
           console.log(this.$refs.form.validate())
         }

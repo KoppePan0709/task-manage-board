@@ -62,8 +62,10 @@
             name: this.groupName,
             active: true
           }
-          this.groupName = ''
+          // this.groupName = ''
+          
           this.$store.dispatch('createGroups', group)
+          this.$refs.form.reset()
         }else {
           console.log(this.$refs.form.validate())
         }
