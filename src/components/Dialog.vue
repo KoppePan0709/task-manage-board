@@ -74,8 +74,19 @@ export default {
       }
   },
   components: {
+    
   },
-  methods: {
+  methods:{
+    // copy(text) {
+    //   console.log('fire')
+    //   var input = document.createElement('input');
+    //   input.setAttribute('id', 'copyinput');
+    //   document.body.appendChild(input);
+    //   input.value = text;
+    //   input.select();
+    //   document.execCommand('copy');
+    //   document.body.removeChild(input);
+    // },
     validate () {
         this.$refs.form.validate()
       },
@@ -120,6 +131,50 @@ export default {
       }else{
         return ''
       }
+    
+    //   let descHtml = marked(this.task.description)
+    //   console.log(descHtml)
+    //   const div = document.createElement('div')
+    //   const regexp_html = /(.[\s\S]*?)(?=<p><code)/ //code以外を抽出する正規表現
+    //   const regexp_code = /<p><code>(.[\s\S]*?)<\/code>([\s\S]*?)<\/p>|<pre><code(.[\s\S]*?)>(.[\s\S]*?)<\/code><\/pre>/  //codeを抽出する正規表現
+    //   console.log(descHtml.match(regexp_html))
+    //   console.log(descHtml.match(regexp_code))
+    //   while (descHtml.match(regexp_html) || descHtml.match(regexp_code)) {
+    //     /* code以外の要素を処理 */
+    //     if (descHtml.match(regexp_html)) {
+    //       const html =  descHtml.match(regexp_html)
+    //       descHtml = descHtml.replace(html[0], '')
+    //       const div_html = document.createElement('div')
+    //       div_html.innerHTML = html[0]
+    //       div.appendChild(div_html)
+    //       console.log('hhhhhhhhhhh', div)
+    //     }
+    //     /* codeの要素を処理 */
+    //     if (descHtml.match(regexp_code)) {
+    //       const code = descHtml.match(regexp_code)
+    //       const div_code = document.createElement('div')
+    //       descHtml = descHtml.replace(code[0], '')
+    //       if (code[0].replace('<p>', '<p style="margin: 0;">') != null){
+    //         div_code.innerHTML = code[0].replace('<p>', '<p style="margin: 0";>')
+    //       }else{
+    //         div_code.innerHTML = code[0]
+    //       }
+    //       div_code.onclick = function(){
+    //         console.log('Fire')
+    //       }
+    //       // let clazz = Vue.extend(CardDescription)
+    //       // let instance = new clazz({
+    //       //   propsData: {
+    //       //     code: div_code
+    //       //   }
+    //       // }).$mount()
+    //       // div.appendChild(instance.$el)
+    //       // }
+    //       div.appendChild(div_code)
+    //     }
+    //   //   console.log(div)
+    //   }
+    //   return div.innerHTML
     }
   }
 }

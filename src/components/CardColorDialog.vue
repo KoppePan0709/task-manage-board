@@ -2,6 +2,7 @@
   <v-dialog
     v-model="dialog"
     max-width="400"
+    @input="v => v || close()"
   >
     <template v-slot:activator="{ on, attrs }">
       <v-list-item
@@ -66,7 +67,10 @@
         console.log('change Fire')
         this.dialog = !this.dialog
         this.$store.dispatch('updateTasks', this.task)
-      }
+      },
+      close () {
+      this.$store.dispatch('updateTasks', this.task)
+    }
     }
   }
 </script>

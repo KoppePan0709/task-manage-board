@@ -7,10 +7,10 @@
         </v-col>
       </template>
       <template v-else>
-        <v-col cols='9' align-self="center" class="pa-0 pl-5" @click="onEditting(group)">
-          <v-card-title class="text-h6 pa-0 pt-2">{{ group.name }}</v-card-title>
+        <v-col cols='9' align-self="center" class="pa-0 pt-1 pl-5" @click="onEditting(group)">
+          <v-card-text class="text-h6 font-weight-bold pa-0 pt-2">{{ group.name }}</v-card-text>
         </v-col>
-        <v-col cols="3" align-self="center" class="pb-0">
+        <v-col cols="3" align-self="center" class="pb-0 pt-1">
           <ContainerMenu :group="group"/>
         </v-col>
       </template>
@@ -18,7 +18,7 @@
     
     <v-row justify="center" >
       <!-- <draggable v-model="tasksByGroupName" group="groups" @start="drag=true" @end="drag=false"> -->
-          <v-col cols='11' v-for="task in tasksByGroupId" :key="task.id">
+          <v-col cols='11' v-for="task in tasksByGroupId" :key="task.id" class="pt-0"> 
           <Card :task="task"/>
         </v-col>
       <!-- </draggable> -->

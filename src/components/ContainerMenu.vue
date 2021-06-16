@@ -8,7 +8,7 @@
         icon
         v-bind="attrs"
         v-on="on"
-      ><v-icon>mdi-dots-vertical</v-icon>
+      ><v-icon color="grey">mdi-dots-horizontal-circle-outline</v-icon>
       </v-btn>
     </template>
     
