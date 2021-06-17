@@ -13,8 +13,7 @@
             <!-- <v-col cols="1" ><v-icon @click="deleteCard(task)">mdi-delete</v-icon></v-col> -->
             <v-col cols="1" ><CardDeleteButton :task="task"/></v-col>
           </v-layout >
-          <!-- <v-col cols="12" ref="description" @click.stop="" align-self="center" v-html="description"> -->
-          <v-col cols="12" ref="description" @click.stop="" align-self="center" v-html="description">
+          <v-col cols="12" ref="description" align-self="center" v-html="description">
           </v-col>
         </v-row>
       </v-container>

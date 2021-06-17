@@ -16,7 +16,7 @@
       </v-list-item>
     </template> -->
     <template v-slot:activator="{ on, attrs }">
-      <v-icon v-bind="attrs" v-on="on" >mdi-palette</v-icon>
+      <v-icon v-bind="attrs" v-on="on" @click.stop="">mdi-palette</v-icon>
     </template>
 
     <v-card
