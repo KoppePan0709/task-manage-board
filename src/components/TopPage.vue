@@ -12,7 +12,7 @@
     
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title >Markdown Note</v-toolbar-title>
+      <v-toolbar-title class="font-weight-bold" >Markdown Note</v-toolbar-title>
 
       <v-spacer></v-spacer>
       
@@ -37,7 +37,7 @@
             cols="2"
             v-for='group in activeGroups'
             :key='group.id'
-            class="ma-1 mt-3"
+            class="mt-3"
           >
             <CardContainer :group="group"/>
           </v-col>

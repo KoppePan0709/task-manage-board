@@ -1,44 +1,64 @@
 <template>
-<div>
-  <v-dialog v-model="dialog" max-width="600">
-    <v-card color="#e9e9e9" >
-          <v-form
-            ref="form"
-            v-model="valid"
-            lazy-validation
-            class="pa-10"
-           >
-          <v-layout column >
-          <v-card-title class="pa-0"><v-icon class="pr-3">mdi-subtitles-outline</v-icon>Title</v-card-title>
-          <v-text-field
+  <div>
+    <v-dialog
+      v-model="dialog"
+      max-width="600"
+    >
+      
+      <v-card color="#e9e9e9" >
+        
+        <v-form
+          ref="form"
+          v-model="valid"
+          lazy-validation
+          class="pa-10"
+        >
+      
+          <v-layout column >    
+            
+            <v-card-title class="pa-0">
+              <v-icon class="pr-3">
+                mdi-subtitles-outline
+              </v-icon>
+              Title
+            </v-card-title>
+          
+            <v-text-field
               color="grey"
               :rules="rules"
               v-model="task.title"
               dense
               required
               outlined
-             ></v-text-field>
-          <v-card-title class="pa-0"><v-icon class="pr-3">mdi-language-markdown</v-icon>Description</v-card-title>
-          <v-textarea
+            ></v-text-field>
+
+            <v-card-title class="pa-0">
+
+              <v-icon class="pr-3">
+                mdi-language-markdown
+              </v-icon>
+              Description
+            </v-card-title>
+            
+            <v-textarea
               name="input-7-1"
               color="grey"
               v-model="task.description"
               rows="15"
               outlined
-              ></v-textarea>
-              
-          <!-- <v-btn                     
-                v-on:click="save"
-                outlined
-                
-              >Save</v-btn> -->
-              <v-btn
-                :disabled="!valid"
-                              
-                @click="validate"
-                outlined
-                
-              ><v-icon>mdi-plus</v-icon>CREATE</v-btn>
+            ></v-textarea>
+
+            <v-btn
+              :disabled="!valid"           
+              @click="validate"
+              outlined
+            >
+            <v-icon>
+                mdi-plus
+              </v-icon>
+              CREATE
+            </v-btn>
+
           </v-layout>
         </v-form>
       </v-card>

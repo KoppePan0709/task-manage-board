@@ -1,9 +1,9 @@
 <template>
-  <v-card width="600" class="ma-2" color="#e9e9e9" elevation="8">
+  <v-card width="500" class="ma-2" color="#e9e9e9" elevation="8">
     <v-row justify="center" class="pa-3 pb-0 pt-0">                
       <template v-if="isEditting">
         <v-col cols='10' align-self="center">
-          <v-text-field label="Group Name" :rules="rules" hide-details="auto" autofocus @blur="offEditting(group); changeGroupName(group);" v-model="group.name"></v-text-field>
+          <v-text-field label="Group Name" color="grey" :rules="rules" hide-details="auto" autofocus @blur="offEditting(group); changeGroupName(group);" v-model="group.name"></v-text-field>
         </v-col>
       </template>
       <template v-else>
@@ -16,12 +16,10 @@
       </template>
     </v-row>
     
-    <v-row justify="center" >
-      <!-- <draggable v-model="tasksByGroupName" group="groups" @start="drag=true" @end="drag=false"> -->
-          <v-col cols='11' v-for="task in tasksByGroupId" :key="task.id" class="pt-0"> 
-          <Card :task="task"/>
-        </v-col>
-      <!-- </draggable> -->
+    <v-row justify="center">
+      <v-col cols='11' v-for="task in tasksByGroupId" :key="task.id" class="pt-0">
+        <Card :task="task"/>
+      </v-col>
     </v-row>
 
     <v-row justify="center">

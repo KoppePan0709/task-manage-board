@@ -1,6 +1,6 @@
 <template>
   <v-col class="pa-0" >
-    <v-card :color="task.color" max-width="500" dark  @click="openDialog">
+    <v-card :color="task.color" max-width="500" dark  @click="openDialog" elevation="3">
       <v-container class="pt-pb-0">
         <v-row no-gutters>
           <v-layout wrap>
