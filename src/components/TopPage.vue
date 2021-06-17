@@ -64,7 +64,7 @@
         elevation="3"
         @click="openDialog()"
       >
-      <v-icon>mdi-plus</v-icon>
+      <v-icon>mdi-view-grid-plus-outline</v-icon>
       </v-btn>
       <addGroupDialog ref="openDialog"/>
     </v-footer>

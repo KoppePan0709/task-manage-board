@@ -1,6 +1,10 @@
 <template>
 <div>
-  <v-dialog v-model="dialog" max-width="600"  @input="v => v || offEditting()">
+  <v-dialog
+    v-model="dialog"
+    max-width="600"
+    @input="v => v || offEditting()"
+    >
     <v-card v-if="!editting" :color="task.color" dark >
       <v-container>
         <v-row no-gutters class="pa-4">
