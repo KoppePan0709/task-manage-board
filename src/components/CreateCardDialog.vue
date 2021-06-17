@@ -38,7 +38,7 @@
                 @click="validate"
                 outlined
                 
-              >Save</v-btn>
+              ><v-icon>mdi-plus</v-icon>CREATE</v-btn>
           </v-layout>
         </v-form>
       </v-card>

@@ -1,5 +1,5 @@
 <template>
-  <v-card width="600" class="ma-2" color="#e9e9e9" elevation="4">
+  <v-card width="600" class="ma-2" color="#e9e9e9" elevation="8">
     <v-row justify="center" class="pa-3 pb-0 pt-0">                
       <template v-if="isEditting">
         <v-col cols='10' align-self="center">
@@ -8,7 +8,7 @@
       </template>
       <template v-else>
         <v-col cols='9' align-self="center" class="pa-0 pt-1 pl-5" @click="onEditting(group)">
-          <v-card-text class="text-h6 font-weight-bold pa-0 pt-2">{{ group.name }}</v-card-text>
+          <v-card-subtitle class="text-h6 font-weight-bold pa-0 pt-1 pb-1">{{ group.name }}</v-card-subtitle>
         </v-col>
         <v-col cols="3" align-self="center" class="pb-0 pt-1">
           <ContainerMenu :group="group"/>

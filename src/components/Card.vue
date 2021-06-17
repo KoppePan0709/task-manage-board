@@ -4,15 +4,10 @@
       <v-container class="pt-pb-0">
         <v-row no-gutters>
           <v-layout wrap>
-            <v-col cols="10" class="pa-0 pt-1">
+            <v-col cols="12" class="pa-0 pt-1">
               <v-card-text class="pa-0 font-weight-bold" >{{ task.title }}</v-card-text>
             </v-col>
-            <!-- <v-col cols="2" class="pa-0" align-self="top"> -->
-              <v-col cols="2" class="pa-0">
-              <CardMenu :task="task"/>
-            </v-col>
           </v-layout >
-          <!-- <v-col cols="12" ref="description" @click.stop="" align-self="center" class="ma-pa-0"> -->
           <v-col cols="12" ref="description" class="ma-pa-0">
             <v-card-subtitle class="pa-0" v-html="description"></v-card-subtitle>
           </v-col>
@@ -30,7 +25,6 @@
 </template>
 
 <script>
-import CardMenu from '@/components/CardMenu'
 // import CardDescription from '@/components/CardDescription'
 import hljs from 'highlight.js';
 import 'highlight.js/styles/xcode.css';
@@ -45,7 +39,6 @@ export default {
     }
   },
   components: {
-    CardMenu,
     Dialog
   },
   methods: {
