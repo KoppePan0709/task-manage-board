@@ -13,13 +13,14 @@
       </v-btn>
     </template>
     
-    <v-list>
+    <v-list width="200" dense>
       <v-list-item
         v-for="list in lists"
         :key="list.name"
         @click="list.method"
       >
-      <v-list-item-title><v-icon>{{ list.icon }}</v-icon> {{ list.name }}</v-list-item-title>
+      <v-list-item-icon><v-icon>{{ list.icon }}</v-icon></v-list-item-icon>
+      <v-list-item-title>{{ list.name }}</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-menu>
@@ -33,8 +34,8 @@ export default {
     data() {
         return {
             lists: [
-                { name: 'setting', icon: 'mdi-cog', method: ''},
-                { name: 'account', icon: 'mdi-account', method: ''},
+                { name: 'Setting', icon: 'mdi-cog', method: ''},
+                { name: 'Account', icon: 'mdi-account', method: ''},
                 { name: 'SignOut', icon: 'mdi-logout', method: this.signOut}
             ]
         }
