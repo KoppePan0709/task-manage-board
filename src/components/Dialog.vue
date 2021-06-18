@@ -5,7 +5,7 @@
     max-width="600"
     @input="v => v || offEditting()"
     >
-    <v-card v-if="!editting" :color="task.color" dark >
+    <v-card v-if="!editting" :color="task.color" dark>
       <v-container>
         <v-row no-gutters class="pa-4">
           <v-layout wrap>
@@ -49,7 +49,7 @@
               ></v-textarea>
               
           <v-btn                     
-                v-on:click="save"
+                @click="save"
                 color="white"
                 outlined
                 dark

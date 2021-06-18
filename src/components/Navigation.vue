@@ -57,14 +57,13 @@
         </template>
       </v-list-item-group>
     </v-list>
-    <v-btn block elevation="0" @click="openDialog()"><v-icon color="grey">mdi-plus-circle-outline</v-icon></v-btn>
-    <addGroupDialog ref="openDialog"/>
+    <addGroupListItem/>
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import AddGroupDialog from '@/components/addGroupDialog.vue'
+import addGroupListItem from '@/components/addGroupListItem.vue'
 
 export default {
   data () {
@@ -72,7 +71,7 @@ export default {
     }
   },
   components: {
-    AddGroupDialog
+    addGroupListItem
   },
   computed: {
     ...mapState([

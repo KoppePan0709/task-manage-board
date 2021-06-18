@@ -4,17 +4,6 @@
     max-width="400"
     @input="v => v || close()"
   >
-    <!-- <template v-slot:activator="{ on, attrs }">
-      <v-list-item
-        v-bind="attrs"
-        v-on="on"
-      >
-        
-        <v-list-item-title
-        class='green--text'
-      ><v-icon dense small color="green" class="pr-2">mdi-palette</v-icon>Edit Color</v-list-item-title>
-      </v-list-item>
-    </template> -->
     <template v-slot:activator="{ on, attrs }">
       <v-icon v-bind="attrs" v-on="on" @click.stop="">mdi-palette</v-icon>
     </template>

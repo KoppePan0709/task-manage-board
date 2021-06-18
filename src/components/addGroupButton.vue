@@ -1,8 +1,28 @@
 <template>
+<div>
+  <v-btn
+  class="rounded-circle"
+  width="70px"
+  height="70px"
+    @click="openDialog"
+    color="green"
+    absolute
+    bottom
+    right
+    dark
+    elevation="2"
+    @keydown.stop=""
+    >
+      <v-icon x-large>mdi-plus</v-icon>
+      </v-btn>
   <v-dialog
     v-model="dialog"
-    max-width="600px"     
+    max-width="600px"
+    eager
+    @keydown.stop="keydown"
+    @input="v => v || closeDialog()"
   >
+
   <v-card>
     <v-container>
       <v-row>
@@ -36,6 +56,7 @@
       </v-container>
     </v-card>
   </v-dialog> 
+</div>
 </template>
 
 <script>
@@ -55,23 +76,37 @@
     methods: {
       validate () {
         if(this.$refs.form.validate() === true){
+          
           this.dialog = !this.dialog 
+          console.log('dialog',this.dialog)
           const group = {
             id: getUniqueID(),
             user_id: this.$store.state.user_id,
             name: this.groupName,
             active: true
           }
-          // this.groupName = ''
-          
           this.$store.dispatch('createGroups', group)
-          this.$refs.form.reset()
+          
         }else {
           console.log(this.$refs.form.validate())
         }
       },
       openDialog () {
+        this.$refs.form.reset()
         this.dialog = !this.dialog
+        
+      },
+      closeDialog () {
+        this.$refs.form.reset()
+      },
+      keydown (e) {
+        if (e.keyCode === 13) {
+          this.validate()
+        }else{
+          console.log('else', e)
+          
+        }
+        
       }
     },
   }
@@ -82,4 +117,13 @@
   if (myStrong) strong = myStrong;
   return new Date().getTime().toString(16)  + Math.floor(strong*Math.random()).toString(16)
 }
+
+// function close (value) {
+//   value = !value
+//   console.log(value)
+// }
 </script>
+
+<style lang="scss" scoped>
+@import '@/../src/variables.scss';
+</style>

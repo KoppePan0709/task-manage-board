@@ -44,30 +44,8 @@
                     
         </v-row>
       </v-container>
-
+      <addGroupButton/>
     </v-content>
-    
-    
-    <v-footer
-      app
-      color="white"
-      height="50px"
-    >
-      <v-btn
-        color="#4c758a"
-        absolute
-        large
-        top
-        right
-        fab
-        dark
-        elevation="3"
-        @click="openDialog()"
-      >
-      <v-icon>mdi-view-grid-plus-outline</v-icon>
-      </v-btn>
-      <addGroupDialog ref="openDialog"/>
-    </v-footer>
     
     </v-app>
 
@@ -76,7 +54,7 @@
 <script>
 import { mapState } from 'vuex'
 import CardContainer from '@/components/CardContainer'
-import AddGroupDialog from '@/components/addGroupDialog.vue'
+import addGroupButton from '@/components/addGroupButton.vue'
 import Navigation from '@/components/Navigation'
 import Menu from '@/components/Menu'
 
@@ -99,7 +77,7 @@ export default {
   },
   components: {
     CardContainer,
-    AddGroupDialog,
+    addGroupButton,
     Navigation,
     Menu
   },
@@ -113,10 +91,5 @@ export default {
       return this.$store.state.groups.filter( group => group.active === true)
     }
   },
-  methods: {
-    openDialog () {
-      this.$refs.openDialog.openDialog()
-    },
-  }
 }
 </script>

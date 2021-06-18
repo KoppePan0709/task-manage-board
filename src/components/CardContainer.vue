@@ -2,8 +2,17 @@
   <v-card width="500" class="ma-2" color="#e9e9e9" elevation="8">
     <v-row justify="center" class="pa-3 pb-0 pt-0">                
       <template v-if="isEditting">
-        <v-col cols='10' align-self="center">
+        <v-col cols='10' align-self="center" class="pa-0">
+          
+          <v-form
+          ref="form"
+          v-model="valid"
+          lazy-validation
+          class="pa-0"
+          >
           <v-text-field label="Group Name" color="grey" :rules="rules" hide-details="auto" autofocus @blur="offEditting(group); changeGroupName(group);" v-model="group.name"></v-text-field>
+          <!-- <v-text-field label="Group Name" color="grey" :rules="rules" hide-details="auto" autofocus @blur="validate(group);" v-model="group.name"></v-text-field> -->
+          </v-form>
         </v-col>
       </template>
       <template v-else>
@@ -39,6 +48,7 @@ export default {
   props:['group'],
   data () {
     return {
+      valid: true,
       isEditting: false,
       oldName: '',
       rules: [
@@ -78,7 +88,15 @@ export default {
     },
     openDialog () {
       this.$refs.CreateCardDialog.openDialog()
-    }
+    },
+    validate (group) {
+      if(this.$refs.form.validate() === true){  
+          this.$store.dispatch('createGroups', group)
+          this.isEditting = !this.isEditting
+        }else {
+          console.log(this.$refs.form.validate())
+        }
+      },
   },
   computed: {
     tasksByGroupId () {
