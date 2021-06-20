@@ -91,13 +91,13 @@
             active: true
           }
           this.$store.dispatch('createGroups', group)
-          this.$refs.form.reset()
           
         }else {
           console.log(this.$refs.form.validate())
         }
       },
       openDialog () {
+        this.$refs.form.reset()
         this.dialog = !this.dialog
 
       },

@@ -1,43 +1,43 @@
 <template>
-  <v-dialog
+<div>
+  <v-icon @click.stop="openDialog">mdi-palette</v-icon>
+      
+    <v-dialog
     v-model="dialog"
     max-width="400"
     @input="v => v || close()"
-  >
-    <template v-slot:activator="{ on, attrs }">
-      <v-icon v-bind="attrs" v-on="on" @click.stop="">mdi-palette</v-icon>
-    </template>
-
-    <v-card
+    >
+      <v-card
       class="pa-2"
       color="#e9e9e9"
-    >
-    <v-card-title>Select Card Color</v-card-title>
-    <v-card-actions>
-      <v-color-picker
-        dot-size="13"
-        hide-canvas
-        hide-inputs
-        hide-sliders
-        show-swatches
-        swatches-max-height="300"
-        :swatches="swatches"
-        v-model="task.color"
-        width="360"
-      ></v-color-picker>
-    </v-card-actions>
+      >
     
-    <v-card-actions>
-      <v-btn
+        <v-card-title>Select Card Color</v-card-title>
+    
+        <v-card-actions>
+          <v-color-picker
+          dot-size="13"
+          hide-canvas
+          hide-inputs
+          hide-sliders
+          show-swatches
+          swatches-max-height="300"
+          :swatches="swatches"
+          v-model="task.color"
+          width="360"
+          ></v-color-picker>
+        </v-card-actions>
+    
+        <v-card-actions>
+        <v-btn
         @click="changeColor"
         color="green"
         dark
-      >Apply</v-btn>
-    </v-card-actions>
-
-      
+        >Apply</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
+</div>
 </template>
 
 <script>
@@ -73,6 +73,11 @@
         this.dialog = !this.dialog
         this.$store.dispatch('updateTasks', this.task)
       },
+      openDialog () {
+        this.dialog = !this.dialog
+
+      },
+
       close () {
       this.$store.dispatch('updateTasks', this.task)
     }
