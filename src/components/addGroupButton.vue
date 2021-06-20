@@ -1,5 +1,6 @@
 <template>
 <div>
+  <!-- Button to open Dialog -->
   <v-btn
   class="rounded-circle"
   width="70px"

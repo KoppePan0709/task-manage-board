@@ -5,6 +5,7 @@
     block
     elevation="0"
     @click="openDialog"
+    @keydown.stop=""
   >
     <v-icon color="grey">
       mdi-plus-circle-outline
@@ -105,15 +106,10 @@
       },
       keydown (e) {
         if (e.keyCode === 13) {
-          console.log('code 13')
-          console.log('before', this.dialog)
-          this.dialog = !this.dialog
-          console.log('afrter', this.dialog)
-          // this.validate()
+          this.validate()
         }else{
           console.log('else', e)
         }
-        
       }
     },
   }
