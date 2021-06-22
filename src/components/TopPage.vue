@@ -11,8 +11,9 @@
       >
     
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
+      
       <v-toolbar-title class="font-weight-bold" >Markdown Note</v-toolbar-title>
+      <img class="mt-2 ml-2" :src="require('/src/assets/icon-36x36.png')"/>
 
       <v-spacer></v-spacer>
       
@@ -61,6 +62,7 @@ import Menu from '@/components/Menu'
 export default {
   data () {
     return {
+      image: "@/src/assets/icon-24x24.png",
       drawer: false,
       showDialog: false,
       lists: [
