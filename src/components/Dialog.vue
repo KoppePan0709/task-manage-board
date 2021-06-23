@@ -5,7 +5,7 @@
     max-width="600"
     @input="v => v || offEditting()"
     >
-    <v-card v-if="!editting" :color="task.color" dark>
+    <v-card v-if="!editting" :color="task.color" dark min-height="800">
       <v-container>
         <v-row no-gutters class="pa-4">
           <v-layout wrap>
@@ -14,7 +14,6 @@
             </v-col>
             <v-col cols="1" ><CardColorDialog :task="task"/></v-col>
             <v-col cols="1" ><v-icon @click="onEditting()">mdi-square-edit-outline</v-icon></v-col>
-            <!-- <v-col cols="1" ><v-icon @click="deleteCard(task)">mdi-delete</v-icon></v-col> -->
             <v-col cols="1" ><CardDeleteButton :task="task"/></v-col>
           </v-layout >
           <v-col cols="12" ref="description" align-self="center" v-html="description">
@@ -157,22 +156,41 @@ export default {
 
 
       let descHtml = marked(this.task.description)
-      const div = document.createElement('div')
-      div.innerHTML = descHtml
-      const codes = div.getElementsByTagName('code')
-      codes.forEach(code => {
-        console.log(code)
-        code.setAttribute('onclick', "const input = document.createElement('input'); \
-        input.setAttribute('id', 'copyinput');\
-        document.body.appendChild(input);\
-        input.value = 'HHHHHH';\
-        input.select();\
-        document.execCommand('copy');\
-        document.body.removeChild(input);\
-        console.log('resch')")
-      })
+      console.log(descHtml)
+      // const div = document.createElement('div')
+      // div.innerHTML = descHtml
+      // const codes = div.getElementsByTagName('code')
+      // codes.forEach(code => {
+      //   console.log(code)
+      //   code.setAttribute('onclick', "const input = document.createElement('input'); \
+      //   input.setAttribute('id', 'copyinput');\
+      //   document.body.appendChild(input);\
+      //   input.value = 'HHHHHH';\
+      //   input.select();\
+      //   document.execCommand('copy');\
+      //   document.body.removeChild(input);\
+      //   console.log('resch')")
+      // })
       
-      console.log(codes)
+      // console.log(codes)
+
+      const div = document.createElement('div')
+      div.innerHTML = 'aoisdjof'
+      const button = document.createElement('button')
+      button.innerHTML = 'Copy'
+      button.setAttribute('onclick', "console.log('Copied')")
+      div.appendChild(button)
+
+      // div.getElementsByTagName('button').onclick = () =>{
+      //   console.log('osdfjo')
+      // }
+      // document.getElementById('button').onclick = () => {
+      //   var text = document.getElementById('textarea').value;
+      //   ).then(e => {
+      //     console.log(e)
+      //     alert('コピーできました');
+      //   });navigator.clipboard.writeText(text
+      // };
     
     
         
