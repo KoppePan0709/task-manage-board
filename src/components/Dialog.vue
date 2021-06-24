@@ -43,7 +43,7 @@
           <v-card-title class="pa-0 ma-0 mb-1"><v-icon class="pr-3">mdi-tag-outline</v-icon>Tags</v-card-title>
             <div>
             
-              <tagAddButton :task="task" @input="tagSelect($event)"/>
+              <tagAddButton :task="task" @input="selectTags($event)"/>
 
             </div>
           <v-card-title class="pa-0 pb-1"><v-icon class="pr-3">mdi-language-markdown</v-icon>Description</v-card-title>
@@ -109,7 +109,7 @@ export default {
     // },
     validate () {
         if(this.$refs.form.validate() === true){
-          this.dialog = !this.dialog 
+          this.dialog = !this.dialog
           const group = {
             id: getUniqueID(),
             user_id: this.$store.state.user_id,
@@ -122,46 +122,32 @@ export default {
           console.log(this.$refs.form.validate())
         }
       },
-    isShow () {
-      this.dialog = !this.dialog
-      console.log('isShow', this.taskData)
+    openDialog () {
+      console.log('Dialog: openDialog')
+      this.dialog = true
     },  
-    save () {   
-      if (this.isNew != true) {
-        // this.dialog = !this.dialog
-        this.editting = !this.editting
-        console.log('FIRE')
-        this.$store.dispatch('updateTasks', this.taskData)
-
-      }else{
-        this.dialog = !this.dialog
-        const task = {
-          id: getUniqueID(),
-          user_id: this.$store.state.user_id,
-          group_id: this.group_name,
-          title: this.taskData.title,
-          description: this.taskData.description
-        }
-        this.$store.dispatch('createTasks', task)
-        this.taskData.title = ''
-        this.taskData.description = ''
-      }
+    save () {
+      console.log('Dialog: save')
+      this.editting = false
+      this.$store.dispatch('updateTasks', this.taskData)
     },
     onEditting () {
+      console.log('Dialog: onEditting')
       this.editting = true
       console.log('switch', this.editting)
     },
     offEditting () {
-      this.editting = false
+      console.log('Dialog: offEditting')
       this.save()
-      console.log(this.editting)
+      this.dialog = false
     },
     deleteCard (task) {
+      console.log('Dialog: deleteCard')
       this.$store.dispatch('deleteTasks', task)
     },
-    tagSelect (event) {
+    selectTags (event) {
+      console.log('Dialog: selectTags')
       this.taskData.tags = event
-      console.log('event', event)
     }
   },
   computed: {

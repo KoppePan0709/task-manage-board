@@ -16,7 +16,7 @@
           </v-col>
 
           <v-col cols="12" class="pa-0">
-            <Dialog ref="isShow" :task="task" :isNew="false"/>
+            <Dialog ref="Dialog" :task="task"/>
           </v-col>
           <!-- <div class="highlight-json">
             <pre v-html="code"></pre>
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     openDialog () {
-      this.$refs.isShow.isShow()
+      this.$refs.Dialog.openDialog()
     },
     updateCheckbox () {
       this.$emit('updateCheckbox', this.task)
