@@ -9,13 +9,14 @@
       <v-container>
         <v-row no-gutters class="pa-4">
           <v-layout wrap>
-            <v-col cols="9">
+            <v-col cols="9" class="pa-1">
               <v-card-title class="pa-0 text-h6 font-weight-bold" >{{ task.title }}</v-card-title>
             </v-col>
-            <v-col cols="1" ><CardColorDialog :task="task"/></v-col>
-            <v-col cols="1" ><v-icon @click="onEditting()">mdi-square-edit-outline</v-icon></v-col>
-            <v-col cols="1" ><CardDeleteButton :task="task"/></v-col>
+            <v-col cols="1" class="pa-1"><CardColorDialog :task="task"/></v-col>
+            <v-col cols="1" class="pa-1"><v-icon @click="onEditting()">mdi-square-edit-outline</v-icon></v-col>
+            <v-col cols="1" class="pa-1"><CardDeleteButton :task="task"/></v-col>
           </v-layout >
+          <v-col cols="12"><tagLine :task="task"/></v-col>
           <v-col cols="12" ref="description" align-self="center" v-html="description">
           </v-col>
         </v-row>
@@ -29,16 +30,23 @@
             class="pa-10"
            >
           <v-layout column >
-          <v-card-title class="pa-0"><v-icon class="pr-3">mdi-subtitles-outline</v-icon>Title</v-card-title>
+          <v-card-title class="pa-0 pb-1"><v-icon class="pr-3">mdi-subtitles-outline</v-icon>Title</v-card-title>
           <v-text-field
               color="white"
+              class="ma-0"
               :rules="rules"
               v-model="taskData.title"
               dense
               required
               outlined
              ></v-text-field>
-          <v-card-title class="pa-0"><v-icon class="pr-3">mdi-language-markdown</v-icon>Description</v-card-title>
+          <v-card-title class="pa-0 ma-0 mb-1"><v-icon class="pr-3">mdi-tag-outline</v-icon>Tags</v-card-title>
+            <div>
+            
+              <tagAddButton :task="task" @input="tagSelect($event)"/>
+
+            </div>
+          <v-card-title class="pa-0 pb-1"><v-icon class="pr-3">mdi-language-markdown</v-icon>Description</v-card-title>
           <v-textarea
               color="white"
               name="input-7-1"
@@ -65,6 +73,9 @@
 import marked from 'marked'
 import CardColorDialog from '@/components/CardColorDialog'
 import CardDeleteButton from '@/components/CardDeleteButton'
+import tagAddButton from '@/components/tagAddButton'
+import tagLine from '@/components/tagLine'
+
 
 export default {
   props: ['task', 'isNew', 'group_name'],
@@ -81,7 +92,9 @@ export default {
   },
   components: {
     CardColorDialog,
-    CardDeleteButton
+    CardDeleteButton,
+    tagAddButton,
+    tagLine
   },
   methods:{
     // copy(text) {
@@ -140,10 +153,15 @@ export default {
     },
     offEditting () {
       this.editting = false
+      this.save()
       console.log(this.editting)
     },
     deleteCard (task) {
       this.$store.dispatch('deleteTasks', task)
+    },
+    tagSelect (event) {
+      this.taskData.tags = event
+      console.log('event', event)
     }
   },
   computed: {
@@ -157,29 +175,29 @@ export default {
 
       let descHtml = marked(this.task.description)
       console.log(descHtml)
-      // const div = document.createElement('div')
-      // div.innerHTML = descHtml
-      // const codes = div.getElementsByTagName('code')
-      // codes.forEach(code => {
-      //   console.log(code)
-      //   code.setAttribute('onclick', "const input = document.createElement('input'); \
-      //   input.setAttribute('id', 'copyinput');\
-      //   document.body.appendChild(input);\
-      //   input.value = 'HHHHHH';\
-      //   input.select();\
-      //   document.execCommand('copy');\
-      //   document.body.removeChild(input);\
-      //   console.log('resch')")
-      // })
-      
-      // console.log(codes)
-
       const div = document.createElement('div')
-      div.innerHTML = 'aoisdjof'
-      const button = document.createElement('button')
-      button.innerHTML = 'Copy'
-      button.setAttribute('onclick', "console.log('Copied')")
-      div.appendChild(button)
+      div.innerHTML = descHtml
+      const codes = div.getElementsByTagName('code')
+      codes.forEach(code => {
+        console.log(code)
+        code.setAttribute('onclick', "const input = document.createElement('input'); \
+        input.setAttribute('id', 'copyinput');\
+        document.body.appendChild(input);\
+        input.value = 'HHHHHH';\
+        input.select();\
+        document.execCommand('copy');\
+        document.body.removeChild(input);\
+        console.log('resch')")
+      })
+      
+      console.log(codes)
+
+      // const div = document.createElement('div')
+      // div.innerHTML = 'aoisdjof'
+      // const button = document.createElement('button')
+      // button.innerHTML = 'Copy'
+      // button.setAttribute('onclick', "console.log('Copied')")
+      // div.appendChild(button)
 
       // div.getElementsByTagName('button').onclick = () =>{
       //   console.log('osdfjo')

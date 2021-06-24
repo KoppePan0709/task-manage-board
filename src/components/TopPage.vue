@@ -73,9 +73,9 @@ export default {
     }
   },
   created () {
-    console.log('topPage Rendering')
     this.$store.dispatch('initGroups', this.$store.state.user_id)
     this.$store.dispatch('initTasks', this.$store.state.user_id)
+    this.$store.dispatch('initTags', this.$store.state.user_id)
   },
   components: {
     CardContainer,

@@ -9,13 +9,10 @@ export default new Vuex.Store({
   state: {
     user_id: '',
     groups: [],
-    tasks: []
+    tasks: [],
+    tags: []
   },
   getters: {
-    // tasksByGroupName: (state) => (group_name) =>{
-    //   console.log('getters: TaskByGroupName', state.tasks.filter( task => task.group_id === group_name))
-    //   return state.tasks.filter( task => task.group_id === group_name)
-    // },
     tasksByGroupId: (state) => (group_id) =>{
       console.log('getters: TaskByGroupId', state.tasks.filter( task => task.group_id === group_id))
       return state.tasks.filter( task => task.group_id === group_id)
@@ -40,6 +37,11 @@ export default new Vuex.Store({
       const index = state.tasks.length
       Vue.set(state.tasks, index, element)
       console.log('initTasks', element)
+    },
+    initTags (state, element) {
+      const index = state.tags.length
+      Vue.set(state.tags, index, element)
+      console.log('initTags', element)
     },
     createTasks (state,task) {
       console.log('createTasks',task)
@@ -69,6 +71,19 @@ export default new Vuex.Store({
     deleteGroups (state, group) {
       const index = state.groups.findIndex( _group => _group.id === group.id)
       Vue.delete(state.groups, index)
+    },
+    createTags (state, tag) {
+      const index = state.tags.length
+      Vue.set(state.tags,index, tag)
+    },
+    updateTags (state, tag) {
+      console.log('API updateTags', tag)
+      const index = state.tags.findIndex( _tag => _tag.id === tag.id)
+      Vue.set(state.tags,index, tag)
+    },
+    deleteTags (state, tag) {
+      const index = state.tags.findIndex( _tag => _tag.id === tag.id)
+      Vue.delete(state.tags, index)
     }
   },
   actions: {
@@ -90,11 +105,32 @@ export default new Vuex.Store({
       })
       .catch(err => console.log(err))
     },
+    initTags ( { commit }, user_id){
+      api.getAllTags(user_id).then(elements => {
+        elements.forEach(element => {
+          commit('initTags', element)  
+          console.log('initTags: api.getAllTags')
+        });
+      })
+      .catch(err => console.log(err))
+    },
     createTasks ( { commit }, task ){
       api.createTasks(task).then(results => {
         console.log(results)
       }).catch(err => console.log(err))
       commit('createTasks', task)
+    },
+    updateTasks ( { commit }, task ){
+      api.updateTasks(task).then(results => {
+        console.log('API updateTasks succeed', results)
+      }).catch(err => console.log(err))
+      commit('updateTasks', task)
+    },
+    deleteTasks ( {commit }, task){
+      api.deleteTasks(task).then( results => {
+        console.log(results)
+      }).catch( err => console.log(err))
+      commit('deleteTasks', task)
     },
     createGroups ( { commit }, group ){
       console.log('createGroups Fire')
@@ -103,29 +139,37 @@ export default new Vuex.Store({
       }).catch(err => console.log(err))
       commit('createGroups', group)
     },
-    updateTasks ( { commit }, task ){
-      api.updateTasks(task).then(results => {
-        console.log('API updateTasks succeed', results)
-      }).catch(err => console.log(err))
-      commit('updateTasks', task)
-    },
     updateGroups ( { commit }, group ){
       api.updateGroups(group).then(results => {
         console.log(results)
       }).catch(err => console.log(err))
       commit('updateGroups', group)
     },
-    deleteTasks ( {commit }, task){
-      api.deleteTasks(task).then( results => {
-        console.log(results)
-      }).catch( err => console.log(err))
-      commit('deleteTasks', task)
-    },
     deleteGroups ( { commit }, group) {
       api.deleteGroups(group).then( results => {
         console.log(results)
       }).catch( err => console.log(err))
       commit('deleteGroups', group)
+    },
+    createTags ( { commit }, tag ){
+      console.log('createTags Fire')
+      api.createTags(tag).then(results => {
+        console.log(results)
+      }).catch(err => console.log(err))
+      commit('createTags', tag)
+    },
+    updateTags ( { commit }, tag ){
+      api.updateTags(tag).then(results => {
+        console.log(results)
+      }).catch(err => console.log(err))
+      commit('updateTags', tag)
+    },
+    deleteTags ( { commit }, tag) {
+      console.log('actions: deleteTags', tag)
+      api.deleteTags(tag).then( results => {
+        console.log(results)
+      }).catch( err => console.log(err))
+      commit('deleteTags', tag)
     }
   }
 });

@@ -20,7 +20,7 @@
           
 
           
-          <v-list-item :key="group.name" @click="activeGroup(group)">
+          <v-list-item :key="group.id" @click="activeGroup(group)">
             
             <template v-slot:default="{ active }">
               <v-list-item-action >

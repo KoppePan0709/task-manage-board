@@ -1,10 +1,13 @@
 <template>
   <v-col class="pa-0" >
     <v-card :color="task.color" max-width="500" dark  @click="openDialog" elevation="3">
-      <v-container class="pt-pb-0">
+      
+      <v-container class="pt-1">
         <v-row no-gutters>
           <v-layout wrap>
-            <v-col cols="12" class="pa-0 pt-1">
+            
+            <v-col cols="12" class="pa-0">
+              <CardTags :task="task"/>
               <v-card-text class="pa-0 font-weight-bold" >{{ task.title }}</v-card-text>
             </v-col>
           </v-layout >
@@ -30,6 +33,7 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/xcode.css';
 import Dialog from '@/components/Dialog'
 import marked from 'marked'
+import CardTags from '@/components/CardTags'
 
 
 export default {
@@ -39,7 +43,8 @@ export default {
     }
   },
   components: {
-    Dialog
+    Dialog,
+    CardTags
   },
   methods: {
     openDialog () {

@@ -32,6 +32,18 @@
               outlined
             ></v-text-field>
 
+            <v-card-title class="pa-0 ma-0 mb-1">
+              <v-icon class="pr-3">
+                mdi-tag-outline
+              </v-icon>Tags
+            </v-card-title>
+            
+            <div>
+            
+              <tagAddButton :task="{tags:[]}" @input="tagSelect($event)"/>
+
+            </div>
+
             <v-card-title class="pa-0">
 
               <v-icon class="pr-3">
@@ -67,59 +79,59 @@
 </template>
 
 <script scoped>
+import tagAddButton from '@/components/tagAddButton'
+
 export default {
   props: ['group_id'],
   data () {
-      return {
-          dialog: false,
-          valid: true,
-          task: { title: '', description: ''},
-          
-          rules: [
-            v => !!v || 'Name is required',
-            v => (v && v.length <= 33) || 'Name must be less than 33 characters',
-          ],
-      }
+    return {
+        dialog: false,
+        valid: true,
+        task: { title: '', description: ''},
+        tags: [],
+        rules: [
+          v => !!v || 'Name is required',
+          v => (v && v.length <= 33) || 'Name must be less than 33 characters',
+        ],
+    }
+  },
+  components: {
+    tagAddButton
   },
   methods: {
     openDialog () {
       this.dialog = !this.dialog
     },
     validate () {
-        if(this.$refs.form.validate() === true){
-          this.dialog = !this.dialog 
-          const task = {
-          id: getUniqueID(),
-          user_id: this.$store.state.user_id,
-          group_id: this.group_id,
-          title: this.task.title,
-          description: this.task.description,
-          color: "#4c758a"
-        }
-        this.$store.dispatch('createTasks', task)
+      if(this.$refs.form.validate() === true){
+        this.dialog = !this.dialog 
+        const task = {
+        id: getUniqueID(),
+        user_id: this.$store.state.user_id,
+        group_id: this.group_id,
+        title: this.task.title,
+        description: this.task.description,
+        color: "#4c758a",
+        tags: this.tags
+      }
+      this.$store.dispatch('createTasks', task)
 
-        this.$refs.form.reset()
-        
-        }else {
-          console.log(this.$refs.form.validate())
-        }
-      },
-    // save () {
-    //   console.log('createCardDialog: save()')
-    //   this.dialog = !this.dialog
-    //     const task = {
-    //       id: getUniqueID(),
-    //       user_id: this.$store.state.user_id,
-    //       group_id: this.group_id,
-    //       title: this.task.title,
-    //       description: this.task.description,
-    //       color: "#4c758a"
-    //     }
-    //     this.$store.dispatch('createTasks', task)
-    //     this.task.title = ''
-    //     this.task.description = ''
-    // },
-  }
+      this.$refs.form.reset()
+      
+      }else {
+        console.log(this.$refs.form.validate())
+      }
+    },
+    tagSelect (event) {
+      this.tags = event
+      console.log('event', event)
+    }
+  },
+  // computed: {
+  //   selectedTags () {
+  //     state.tasks.filter( task => task.group_id === group_id)
+  //   }
+  // }
 }
 
 function getUniqueID(myStrong){
