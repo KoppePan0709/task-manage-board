@@ -29,7 +29,9 @@
 
         <v-card v-if="!editting" width="300">
 
-          <v-toolbar flat dense color="#e9e9e9" class="text-h6"></v-toolbar>
+          <v-toolbar flat dense color="#e9e9e9" class="text-h6">
+            <v-toolbar-title>Select tags</v-toolbar-title>
+          </v-toolbar>
 
           <v-card-text>
             <!-- <v-chip-group column> -->
