@@ -158,24 +158,45 @@ export default {
       //   return ''
       // }
 
+    const codeBlock = {
+      name: 'codeBlock',
+      level: 'block',                                     // Is this a block-level or inline-level tokenizer?
+      start(src) { return src.match(/```[\s\S][^```\n]/)?.index;}, // Hint to Marked.js to stop and check for a match
+      tokenizer(src, tokens) {
+        console.log(tokens)
+        const rule = /```[\s\S]*?```/;    // Regex for the complete token
+        const match = rule.exec(src);
+        if (match) {
+          return {                                        // Token to generate
+            type: 'codeBlock',                      // Should match "name" above
+            raw: match[0],                                // Text to consume from the source
+            text: match[0].trim(),                        // Additional custom properties
+            tokens: this.inlineTokens(match[0].trim())    // inlineTokens to process **bold**, *italics*, etc.
+          };
+        }
+      },
+      renderer(token) {
+        return `<dl>${this.parseInline(token.tokens)}\n</dl>`; // parseInline to turn child tokens into HTML
+      }
+    };
+
+    marked.use({extensions: [codeBlock] });
 
       let descHtml = marked(this.task.description)
       console.log(descHtml)
       const div = document.createElement('div')
+
       div.innerHTML = descHtml
       const codes = div.getElementsByTagName('code')
       codes.forEach(code => {
-        console.log(code)
-        code.setAttribute('onclick', "const input = document.createElement('input'); \
-        input.setAttribute('id', 'copyinput');\
-        document.body.appendChild(input);\
-        input.value = 'HHHHHH';\
-        input.select();\
-        document.execCommand('copy');\
-        document.body.removeChild(input);\
-        console.log('resch')")
+        const parent = code.parentElement
+        const icon = document.createElement('i')
+        icon.setAttribute('class', "far fa-copy")
+        icon.setAttribute('style', "margin-left: 10px;")
+        icon.setAttribute('onclick', `execCopy(event)`)
+        parent.insertBefore(icon, code.nextSibling)
       })
-      
+
       console.log(codes)
 
       // const div = document.createElement('div')
