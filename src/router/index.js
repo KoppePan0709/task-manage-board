@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import TopPage from '@/components/TopPage'
 import Signup from '@/components/Signup'
 import Signin from '@/components/Signin'
+import Signin from '@/components/CardModal'
 import firebase from 'firebase'
 import store from '@/store'
 
@@ -31,6 +32,11 @@ const router = new VueRouter({
       path: '/signin',
       name: 'Signin',
       component: Signin
+    },
+    {
+      path: '/card/:user_id/:card_id',
+      name: 'CardModal',
+      component: CardModal
     }
   ]
 })

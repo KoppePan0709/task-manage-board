@@ -189,6 +189,7 @@ export default {
         this.$store.dispatch('createTags', tag)
         this.$refs.form.reset()
         this.color = ""
+        this.editting = !this.editting
       }else {
         console.log('input is invalid')
       }
