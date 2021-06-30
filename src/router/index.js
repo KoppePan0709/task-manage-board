@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 import TopPage from '@/components/TopPage'
 import Signup from '@/components/Signup'
 import Signin from '@/components/Signin'
-import Signin from '@/components/CardModal'
+import CardModal from '@/components/CardModal'
 import firebase from 'firebase'
 import store from '@/store'
 
@@ -21,7 +21,15 @@ const router = new VueRouter({
       path: '/',
       name: 'TopPage',
       component: TopPage,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true },
+      children: [
+        {
+          path: ":user_id/:card_id",
+          name: "card",
+          props: true,
+          component: CardModal
+        }
+      ]
     },
     {
       path: '/signup',
@@ -33,11 +41,6 @@ const router = new VueRouter({
       name: 'Signin',
       component: Signin
     },
-    {
-      path: '/card/:user_id/:card_id',
-      name: 'CardModal',
-      component: CardModal
-    }
   ]
 })
 
